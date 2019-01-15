@@ -67,7 +67,7 @@ public class GameLogic : MonoBehaviour {
 				Screen.height/4+Screen.height/10+10, 
 				Screen.width/2-20, Screen.height/10), 
 				"RESTART")){
-				Application.LoadLevel("Game");
+				Application.LoadLevel(0);
 			}
 
 		}

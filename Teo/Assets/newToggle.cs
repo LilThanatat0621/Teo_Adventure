@@ -5,24 +5,31 @@ using UnityEngine;
 public class newToggle : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject Panel;
+    public CanvasGroup canvasGroup;
     bool ActivePanel=false;
     void Start()
     {
         // Panel=GameObject.FindWithTag ("Panel");
-        Panel.SetActive(ActivePanel);
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        canvasGroup.blocksRaycasts=ActivePanel;
+        if(ActivePanel&&canvasGroup.alpha<=1f){
+            canvasGroup.alpha+=0.1f;
+        }
+        if(!ActivePanel&&canvasGroup.alpha>=0){
+            canvasGroup.alpha-=0.1f;
+        }
         
     }
 
     public void TaskOnClick () {
         //Output this to console when Button1 or Button3 is clicked
         ActivePanel=!ActivePanel;
-        Panel.SetActive(ActivePanel);
+        
         // Debug.Log (GameObject.FindWithTag ("Canvas").GetComponent<CanvasScripts> ().ActivePanel);
     }
 }

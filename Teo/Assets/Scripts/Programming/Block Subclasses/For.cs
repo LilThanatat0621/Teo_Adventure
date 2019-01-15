@@ -2,6 +2,7 @@
 using UnityEngine;
 
 public class For : Block {
+	
 	bool canRun = false, canNext = false;
 	override public void Run () {
 
