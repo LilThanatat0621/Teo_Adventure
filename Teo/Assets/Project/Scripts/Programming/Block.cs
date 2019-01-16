@@ -140,7 +140,7 @@ public abstract class Block : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 	public virtual double GetValue () { return 0; }
 
 	protected void Start () {
-		this.GetComponent<Button> ().onClick.AddListener (Run);
+		// this.GetComponent<Button> ().onClick.AddListener (Run);
 		this.rectTransform = gameObject.GetComponent<RectTransform> ();
 		this.image = gameObject.GetComponent<Image> ();
 		this.shadow = gameObject.GetComponent<Shadow> ();

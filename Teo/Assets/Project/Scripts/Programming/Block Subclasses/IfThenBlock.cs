@@ -2,13 +2,15 @@
 using UnityEngine;
 
 public class IfThenBlock : Block {
+	public PositionFloor1Script getx1;
 	override public void Run () {
 		Debug.Log ("ifThen\n");
-		if (If != null) {
-			if (If.CheckCond()) {
+		// if (If != null) {
+		// 	if (If.CheckCond()) {
+			if(getx1.getDistance()<=0.1)
 				if(Inside1!=null)Inside1.Run ();
-			}
-		}
+		// 	}
+		// }
 		if (Next != null) Next.Run ();
 		// if(this.nextConnection.cone!=null)Log("Beep2\n")
 	}
