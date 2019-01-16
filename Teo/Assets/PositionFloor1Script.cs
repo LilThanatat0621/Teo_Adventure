@@ -18,6 +18,6 @@ public class PositionFloor1Script : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         distance = PlayerPos.position.x + 0.878;
-        textMesh.text = getDistance ().ToString ();
+        textMesh.text = ("x1 = "+((int)getDistance ()).ToString ());
     }
 }
