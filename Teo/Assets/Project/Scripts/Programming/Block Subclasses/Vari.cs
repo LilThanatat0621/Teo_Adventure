@@ -6,7 +6,7 @@ public class Vari : Block {
 	public PositionFloor1Script get;
 	public Text childText;
 	override public double GetValue () {
-		Debug.Log(get.getDistance());
+		// Debug.Log(get.getDistance());
 		return get.getDistance();
 	}
 	// private void Start() {
