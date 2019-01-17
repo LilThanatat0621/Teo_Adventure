@@ -19,7 +19,8 @@ public class RunBtn : MonoBehaviour {
         // Code.GetComponent<BeepBlock>().Run();
         // Debug.Log(Code);
         foreach (Block child in allChildren) {
-            Debug.Log (child.gameObject);
+            // Debug.Log (child.gameObject);
+            if(child.isStartBlock)child.Run();
         }
     }
 }

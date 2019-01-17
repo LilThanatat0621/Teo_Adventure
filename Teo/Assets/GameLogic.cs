@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class GameLogic : MonoBehaviour {
-	float timeRemaining = 45f; 
+	float timeRemaining = 4500f; 
 	float timeExtension = 3f; 
 	float timeDeduction = 2f; 
 	float totalTimeElapsed = 0;   

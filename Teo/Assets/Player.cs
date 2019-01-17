@@ -58,6 +58,16 @@ public class Player : MonoBehaviour {
 			rigidbody2d.AddForce ((Vector2.up * jumpPower) * jumpSpeed);
 		}
 	}
+	public void Dash () {
+		Debug.Log("Dash");
+	}
+	public void Firez () {
+		if ( Time.time > nextFire) {
+			nextFire = Time.time + fireRate;
+			anim.SetBool ("Attack", true);
+			Fire ();
+		}
+	}
 	public void Walk () {
 		anim.SetFloat ("Speed", 1f);
 		transform.Translate (Vector2.right * speed * Time.deltaTime);
