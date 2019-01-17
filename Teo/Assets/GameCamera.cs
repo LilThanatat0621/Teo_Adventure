@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 public class GameCamera : MonoBehaviour {
     public float dampTime = 0.15f;
+    public newToggle panelBtn;
     private Vector3 velocity = Vector3.zero;
     public Transform target;
     public bool pressed = true;
@@ -15,7 +16,7 @@ public class GameCamera : MonoBehaviour {
         if (Input.GetMouseButtonDown (0)) {
             lastMousePos = Input.mousePosition;
         }
-        if (pressed) {
+        if (pressed&&!panelBtn.ActivePanel) {
             transform.position = Vector3.SmoothDamp (transform.position, new Vector3 (-(Input.mousePosition.x - lastMousePos.x) / 100+destination.x, -(Input.mousePosition.y - lastMousePos.y) / 100+destination.y, -10), ref velocity, dampTime);
         } else if (target) {
 
