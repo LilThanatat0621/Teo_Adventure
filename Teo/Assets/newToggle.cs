@@ -6,7 +6,7 @@ public class newToggle : MonoBehaviour
 {
     // Start is called before the first frame update
     public CanvasGroup canvasGroup;
-    bool ActivePanel=false;
+    public bool ActivePanel=false;
     void Start()
     {
         // Panel=GameObject.FindWithTag ("Panel");

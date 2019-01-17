@@ -6,18 +6,20 @@ public class PositionFloor1Script : MonoBehaviour {
     // Start is called before the first frame update\
     public Transform ThisPos, PlayerPos;
     double distance;
+    public double posBlock;
+    string temp;
     public TextMesh textMesh;
     void Start () {
-
+        temp = textMesh.text;
     }
     public double getDistance () {
-        if(distance<=0)distance*=-1;
-        return distance;
+        if (distance <= 0) distance *= -1;
+        return distance * 10;
 
     }
     // Update is called once per frame
     void Update () {
-        distance = PlayerPos.position.x + 0.878;
-        textMesh.text = ("x1 = "+((int)getDistance ()).ToString ());
+        distance = PlayerPos.position.x - posBlock;
+        textMesh.text = (temp + " = " + (getDistance ()).ToString ("0.00"));
     }
 }
