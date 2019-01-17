@@ -129,6 +129,7 @@ public abstract class Block : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 		protected Shadow shadow;
 		public Block connectedBlock, If, Inside1, Inside2, Next, Variable1, Variable2, Previous;
 		public bool leaveClone = true;
+		public bool isStartBlock=false;
 
 		public BlockType GetBlockType () {
 		return this.blockType;
@@ -253,6 +254,7 @@ public abstract class Block : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 			go.GetComponent<RectTransform> ().sizeDelta = this.rectTransform.sizeDelta;
 			go.GetComponent<RectTransform> ().anchorMin = this.rectTransform.anchorMin;
 			go.GetComponent<RectTransform> ().anchorMax = this.rectTransform.anchorMax;
+			this.GetComponent<RectTransform> ().position = go.GetComponent<RectTransform> ().position;
 		}
 
 		// Desconecta do bloco acima

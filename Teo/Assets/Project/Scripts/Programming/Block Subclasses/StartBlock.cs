@@ -1,18 +1,18 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class SimpleInscructionBlock : Block {
+public class StartBlock : Block {
 	override public void Run () {
-		// Debug.Log ("Simple\n");
-		// if(this.nextConnection.cone!=null)Log("Beep2\n")
+		if(Next!=null)Next.Run();
 	}
 
 	override protected void CreateConnections () {
+		this.isStartBlock=true;
 		this.blockType = BlockType.BlockTypeInscrution;
 		Connection previousConnection = new Connection (this, new Vector2 (35, 42), Connection.ConnectionType.Previous);
 		Connection nextConnection = new Connection (this, new Vector2 (35, 4), Connection.ConnectionType.Next);
 
-		previousConnection.SetAcceptableBlockType (BlockType.BlockTypeInscrution);
+		previousConnection.SetAcceptableBlockType (BlockType.BlockTypeStart);
 		nextConnection.SetAcceptableBlockType (BlockType.BlockTypeInscrution);
 
 		this.connections.Add (previousConnection);
