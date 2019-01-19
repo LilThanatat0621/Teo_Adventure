@@ -18,19 +18,22 @@ public class IfThenElseThenBlock : Block {
 	}
 	override protected void CreateConnections () {
 		this.blockType = BlockType.BlockTypeInscrution;
-		Connection previousConnection = new Connection (this, new Vector2 (36, 105), Connection.ConnectionType.Previous);
-		Connection nextConnection = new Connection (this, new Vector2 (58, 100), Connection.ConnectionType.Next);
-		Connection thenConnection = new Connection (this, new Vector2 (58.5f, 50), Connection.ConnectionType.Inside1);
-		Connection conditionConnection = new Connection (this, new Vector2 (87, 103), Connection.ConnectionType.If);
+		Connection previousConnection = new Connection (this, new Vector2 (6, 100), Connection.ConnectionType.Previous);
+		Connection nextConnection = new Connection (this, new Vector2 (7, 0), Connection.ConnectionType.Next);
+		Connection thenConnection = new Connection (this, new Vector2 (30, 77), Connection.ConnectionType.Inside1);
+		Connection then2Connection = new Connection (this, new Vector2 (29, 20), Connection.ConnectionType.Inside1);
+		Connection conditionConnection = new Connection (this, new Vector2 (66, 95), Connection.ConnectionType.If);
 
 		previousConnection.SetAcceptableBlockType (BlockType.BlockTypeInscrution);
 		nextConnection.SetAcceptableBlockType (BlockType.BlockTypeInscrution);
 		thenConnection.SetAcceptableBlockType (BlockType.BlockTypeInscrution);
+		then2Connection.SetAcceptableBlockType (BlockType.BlockTypeInscrution);
 		conditionConnection.SetAcceptableBlockType (BlockType.BlockTypeLogic);
 
 		this.connections.Add (previousConnection);
 
 		this.connections.Add (thenConnection);
+		this.connections.Add (then2Connection);
 		this.connections.Add (conditionConnection);
 
 		this.connections.Add (nextConnection);

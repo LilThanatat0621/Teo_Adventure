@@ -23,23 +23,26 @@ public class While : Block {
 		} else if (canNext) {
 			canNext = false;
 			if (Next != null) Next.Run ();
+			
 		}
 	}
 
 	override protected void CreateConnections () {
 		this.blockType = BlockType.BlockTypeInscrution;
-		Connection previousConnection = new Connection (this, new Vector2 (35, 80), Connection.ConnectionType.Previous);
-		Connection nextConnection = new Connection (this, new Vector2 (32, 23), Connection.ConnectionType.Next);
-		Connection thenConnection = new Connection (this, new Vector2 (58.5f, 50), Connection.ConnectionType.Inside1);
+		Connection previousConnection = new Connection (this, new Vector2 (5, 100), Connection.ConnectionType.Previous);
+		Connection nextConnection = new Connection (this, new Vector2 (6, 4), Connection.ConnectionType.Next);
+		Connection thenConnection = new Connection (this, new Vector2 (29, 53), Connection.ConnectionType.Inside1);
+		Connection conditionConnection = new Connection (this, new Vector2 (76, 83), Connection.ConnectionType.If);
 		// Connection conditionConnection = new Connection (this, new Vector2 (35, 75), Connection.ConnectionType.If);
 
 		previousConnection.SetAcceptableBlockType (BlockType.BlockTypeInscrution);
 		nextConnection.SetAcceptableBlockType (BlockType.BlockTypeInscrution);
 		thenConnection.SetAcceptableBlockType (BlockType.BlockTypeInscrution);
+		conditionConnection.SetAcceptableBlockType (BlockType.BlockTypeLogic);
 		// conditionConnection.SetAcceptableBlockType (BlockType.BlockTypeLogic);
 
 		this.connections.Add (previousConnection);
-
+		this.connections.Add (conditionConnection);
 		this.connections.Add (thenConnection);
 		// this.connections.Add (conditionConnection);
 

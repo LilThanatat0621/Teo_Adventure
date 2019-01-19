@@ -29,18 +29,20 @@ public class For : Block {
 
 	override protected void CreateConnections () {
 		this.blockType = BlockType.BlockTypeInscrution;
-		Connection previousConnection = new Connection (this, new Vector2 (35, 83), Connection.ConnectionType.Previous);
-		Connection nextConnection = new Connection (this, new Vector2 (34, 23), Connection.ConnectionType.Next);
-		Connection thenConnection = new Connection (this, new Vector2 (25, 50), Connection.ConnectionType.Inside1);
+		Connection previousConnection = new Connection (this, new Vector2 (5, 100), Connection.ConnectionType.Previous);
+		Connection nextConnection = new Connection (this, new Vector2 (6, 4), Connection.ConnectionType.Next);
+		Connection thenConnection = new Connection (this, new Vector2 (30, 53), Connection.ConnectionType.Inside1);
+		Connection conditionConnection = new Connection (this, new Vector2 (69, 83), Connection.ConnectionType.If);
 		// Connection conditionConnection = new Connection (this, new Vector2 (35, 75), Connection.ConnectionType.If);
 
 		previousConnection.SetAcceptableBlockType (BlockType.BlockTypeInscrution);
 		nextConnection.SetAcceptableBlockType (BlockType.BlockTypeInscrution);
 		thenConnection.SetAcceptableBlockType (BlockType.BlockTypeInscrution);
+		conditionConnection.SetAcceptableBlockType (BlockType.BlockTypeLogic);
 		// conditionConnection.SetAcceptableBlockType (BlockType.BlockTypeLogic);
 
 		this.connections.Add (previousConnection);
-
+		this.connections.Add (conditionConnection);
 		this.connections.Add (thenConnection);
 		// this.connections.Add (conditionConnection);
 

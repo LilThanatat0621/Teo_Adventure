@@ -10,7 +10,7 @@ public class StartBlock : Block {
 		this.isStartBlock=true;
 		this.blockType = BlockType.BlockTypeInscrution;
 		Connection previousConnection = new Connection (this, new Vector2 (35, 42), Connection.ConnectionType.Previous);
-		Connection nextConnection = new Connection (this, new Vector2 (35, 35), Connection.ConnectionType.Next);
+		Connection nextConnection = new Connection (this, new Vector2 (12, 1), Connection.ConnectionType.Next);
 
 		previousConnection.SetAcceptableBlockType (BlockType.BlockTypeStart);
 		nextConnection.SetAcceptableBlockType (BlockType.BlockTypeInscrution);
