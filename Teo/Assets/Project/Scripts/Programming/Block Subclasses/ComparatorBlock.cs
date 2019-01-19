@@ -43,10 +43,10 @@ public class ComparatorBlock : Block {
 	public Dropdown comparator;
 	override protected void CreateConnections () {
 		this.blockType = BlockType.BlockTypeLogic;
-		Connection previousConnection = new Connection (this, new Vector2 (50, 11), Connection.ConnectionType.Previous);
+		Connection previousConnection = new Connection (this, new Vector2 (50, 50), Connection.ConnectionType.Previous);
 		// Connection nextConnection = new Connection (this, new Vector2 (199, 20), Connection.ConnectionType.ConnectionTypeMale);
-		Connection var1 = new Connection (this, new Vector2 (11, 11), Connection.ConnectionType.Variable1);
-		Connection var2 = new Connection (this, new Vector2 (88, 11), Connection.ConnectionType.Variable2);
+		Connection var1 = new Connection (this, new Vector2 (11, 50), Connection.ConnectionType.Variable1);
+		Connection var2 = new Connection (this, new Vector2 (88, 50), Connection.ConnectionType.Variable2);
 
 		previousConnection.SetAcceptableBlockType (BlockType.BlockTypeInscrution | BlockType.BlockTypeConditionJoint);
 		// nextConnection.SetAcceptableBlockType (BlockType.BlockTypeConditionJoint);

@@ -15,7 +15,7 @@ public class Vari : Block {
 	override protected void CreateConnections () {
 		var=childText.text;
 		this.blockType = BlockType.BlockTypeNumeric;
-		Connection previousConnection = new Connection (this, new Vector2 (26.82f/2, 16.62f/2), Connection.ConnectionType.Previous);
+		Connection previousConnection = new Connection (this, new Vector2 (50, 50), Connection.ConnectionType.Previous);
 	
 
 		previousConnection.SetAcceptableBlockType (BlockType.BlockTypeLogic);

@@ -28,10 +28,11 @@ public abstract class Block : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 		}
 
 		public Vector2 AbsolutePosition () {
-			float parentScale = this.ownerBlock.transform.parent.GetComponent<RectTransform> ().localScale.x;
+			float parentScaleX = this.ownerBlock.transform.parent.GetComponent<RectTransform> ().localScale.x;
+			float parentScaleY = this.ownerBlock.transform.parent.GetComponent<RectTransform> ().localScale.y;
 			return new Vector2 (this.ownerBlock.transform.position.x, this.ownerBlock.transform.position.y) +
-				new Vector2 ((this.relativePosition.x - this.ownerBlock.rectTransform.sizeDelta.x / 2) * parentScale,
-					(this.relativePosition.y - this.ownerBlock.rectTransform.sizeDelta.y / 2) * parentScale);
+				new Vector2 (((this.ownerBlock.rectTransform.sizeDelta.x/100*this.relativePosition.x) - this.ownerBlock.rectTransform.sizeDelta.x / 2) * parentScaleX,
+					((this.ownerBlock.rectTransform.sizeDelta.y/100*this.relativePosition.y) - this.ownerBlock.rectTransform.sizeDelta.y / 2) * parentScaleY);
 
 		}
 		float DistanceTo (Connection connection) {
