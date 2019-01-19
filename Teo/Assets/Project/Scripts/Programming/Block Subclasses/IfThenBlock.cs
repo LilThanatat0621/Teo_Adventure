@@ -15,9 +15,9 @@ public class IfThenBlock : Block {
 	}
 	override protected void CreateConnections () {
 		this.blockType = BlockType.BlockTypeInscrution;
-		Connection previousConnection = new Connection (this, new Vector2 (35, 55), Connection.ConnectionType.Previous);
-		Connection nextConnection = new Connection (this, new Vector2 (35, 25), Connection.ConnectionType.Next);
-		Connection thenConnection = new Connection (this, new Vector2 (58.5f, 50), Connection.ConnectionType.Inside1);
+		Connection previousConnection = new Connection (this, new Vector2 (10, 90), Connection.ConnectionType.Previous);
+		Connection nextConnection = new Connection (this, new Vector2 (10, 0), Connection.ConnectionType.Next);
+		Connection thenConnection = new Connection (this, new Vector2 (20, 50), Connection.ConnectionType.Inside1);
 		Connection conditionConnection = new Connection (this, new Vector2 (88, 52), Connection.ConnectionType.If);
 
 		previousConnection.SetAcceptableBlockType (BlockType.BlockTypeInscrution);

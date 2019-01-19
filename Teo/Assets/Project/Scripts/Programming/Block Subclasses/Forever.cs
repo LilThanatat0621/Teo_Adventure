@@ -29,9 +29,9 @@ public class Forever : Block {
 
 	override protected void CreateConnections () {
 		this.blockType = BlockType.BlockTypeInscrution;
-		Connection previousConnection = new Connection (this, new Vector2 (36, 58), Connection.ConnectionType.Previous);
-		Connection nextConnection = new Connection (this, new Vector2 (34, 22), Connection.ConnectionType.Next);
-		Connection thenConnection = new Connection (this, new Vector2 (58.5f, 50), Connection.ConnectionType.Inside1);
+		Connection previousConnection = new Connection (this, new Vector2 (10, 90), Connection.ConnectionType.Previous);
+		Connection nextConnection = new Connection (this, new Vector2 (10, 0), Connection.ConnectionType.Next);
+		Connection thenConnection = new Connection (this, new Vector2 (28, 55), Connection.ConnectionType.Inside1);
 		// Connection conditionConnection = new Connection (this, new Vector2 (35, 75), Connection.ConnectionType.If);
 
 		previousConnection.SetAcceptableBlockType (BlockType.BlockTypeInscrution);
