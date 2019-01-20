@@ -28,12 +28,12 @@ public abstract class Block : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 		}
 
 		public Vector2 AbsolutePosition () {
-			
+
 			float parentScaleX = GameObject.FindWithTag ("Canvas").transform.localScale.x;
 			float parentScaleY = GameObject.FindWithTag ("Canvas").transform.localScale.y;
 			return new Vector2 (this.ownerBlock.transform.position.x, this.ownerBlock.transform.position.y) +
-				new Vector2 (((this.ownerBlock.rectTransform.sizeDelta.x/100*this.relativePosition.x) - this.ownerBlock.rectTransform.sizeDelta.x / 2) * parentScaleX,
-					((this.ownerBlock.rectTransform.sizeDelta.y/100*this.relativePosition.y) - this.ownerBlock.rectTransform.sizeDelta.y / 2) * parentScaleY);
+				new Vector2 (((this.ownerBlock.rectTransform.sizeDelta.x / 100 * this.relativePosition.x) - this.ownerBlock.rectTransform.sizeDelta.x / 2) * parentScaleX,
+					((this.ownerBlock.rectTransform.sizeDelta.y / 100 * this.relativePosition.y) - this.ownerBlock.rectTransform.sizeDelta.y / 2) * parentScaleY);
 
 		}
 		float DistanceTo (Connection connection) {
@@ -131,7 +131,7 @@ public abstract class Block : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 		protected Shadow shadow;
 		public Block connectedBlock, If, Inside1, Inside2, Next, Variable1, Variable2, Previous;
 		public bool leaveClone = true;
-		public bool isStartBlock=false;
+		public bool isStartBlock = false;
 
 		public BlockType GetBlockType () {
 		return this.blockType;
@@ -294,9 +294,20 @@ public abstract class Block : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 		Vector2 mousePos = new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
 
 		if (RectTransformUtility.RectangleContainsScreenPoint (rect, mousePos)) {
-			Vector3 previousPosition = this.transform.position;
-			this.transform.SetParent (codeContentGO.transform, false);
-			this.transform.position = previousPosition;
+			GameObject[] allChildren = GameObject.FindGameObjectsWithTag ("PackContent");
+			GameObject match = null;
+			foreach (GameObject child in allChildren) {
+				if (RectTransformUtility.RectangleContainsScreenPoint (child.GetComponent<RectTransform> (), mousePos) && child.transform.parent.transform.parent.GetComponent<CanvasGroup> ().alpha == 1) match = child;
+			}
+			if (match != null) {
+				Vector3 previousPosition = this.transform.position;
+				this.transform.SetParent (match.transform, false);
+				this.transform.position = previousPosition;
+			} else {
+				Vector3 previousPosition = this.transform.position;
+				this.transform.SetParent (codeContentGO.transform, false);
+				this.transform.position = previousPosition;
+			}
 		} else {
 			ArrayList des = this.DescendingBlocks ();
 			foreach (Block block in des) {
