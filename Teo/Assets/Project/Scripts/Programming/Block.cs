@@ -4,6 +4,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public abstract class Block : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
+	public RectTransform Left, Mid, Bot;
+	public GameObject Bott, Leftt;
 	public class Connection {
 		const float kMinimumAttachRadius = 20.0f;
 		public enum ConnectionType { ConnectionTypeMale, ConnectionTypeFemale, Main, Variable1, Variable2, If, Inside1, Inside2, Previous, Next };
@@ -31,9 +33,35 @@ public abstract class Block : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
 			float parentScaleX = GameObject.FindWithTag ("Canvas").transform.localScale.x;
 			float parentScaleY = GameObject.FindWithTag ("Canvas").transform.localScale.y;
+			float tempX1 = 0;
+			if (this.connectionType == ConnectionType.Next) {
+				if (this.ownerBlock.Inside1 != null) {
+					Block In1 = this.ownerBlock.Inside1;
+					if (In1.GetLength () >= 1) {
+						tempX1 += In1.GetHeight () * parentScaleY;
+
+					}
+				}
+				if (this.ownerBlock.Inside2 != null) {
+					Block In2 = this.ownerBlock.Inside2;
+					if (In2.GetLength () >= 1) {
+						tempX1 += In2.GetHeight () * parentScaleY;
+					}
+				}
+				this.ownerBlock.OnChangeNextDelta (new Vector2 (0, -tempX1));
+			}
+			if (this.connectionType == ConnectionType.Inside2) {
+				if (this.ownerBlock.Inside1 != null) {
+					Block In1 = this.ownerBlock.Inside1;
+					if (In1.GetLength () >= 1) {
+						tempX1 += In1.GetHeight () * parentScaleY;
+					}
+				}
+				this.ownerBlock.OnChangeInside2Delta (new Vector2 (0, -tempX1));
+			}
 			return new Vector2 (this.ownerBlock.transform.position.x, this.ownerBlock.transform.position.y) +
 				new Vector2 (((this.ownerBlock.rectTransform.sizeDelta.x / 100 * this.relativePosition.x) - this.ownerBlock.rectTransform.sizeDelta.x / 2) * parentScaleX,
-					((this.ownerBlock.rectTransform.sizeDelta.y / 100 * this.relativePosition.y) - this.ownerBlock.rectTransform.sizeDelta.y / 2) * parentScaleY);
+					((this.ownerBlock.rectTransform.sizeDelta.y / 100 * this.relativePosition.y) - this.ownerBlock.rectTransform.sizeDelta.y / 2) * parentScaleY - tempX1);
 
 		}
 		float DistanceTo (Connection connection) {
@@ -173,7 +201,25 @@ public abstract class Block : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 		Connection firstConnection = this.connections[0] as Connection;
 		firstConnection.Detach ();
 	}
-
+	Vector2 _Next = Vector2.zero, _Inside2 = Vector2.zero;
+	public void OnChangeNextDelta (Vector2 delta) {
+		if (_Next != delta) {
+			if (this.Next != null) this.Next.ApplyDelta (delta - _Next);
+			Left.anchoredPosition=Left.anchoredPosition+(delta-_Next)/2;
+			Left.sizeDelta=Left.sizeDelta-(delta-_Next);
+			// Bot.anchoredPosition=Bot.anchoredPosition+(delta-_Next);
+			// Leftt.transform.position = Leftt.transform.position + new Vector3 (0, (delta.y - _Next.y) / 2);
+			// Leftt.transform.localScale = new Vector3(Leftt.transform.localScale.x,Leftt.transform.localScale.y + (delta.y-_Next.y));
+			Bott.transform.position = Bott.transform.position + new Vector3 (0, (delta.y - _Next.y));
+			_Next = delta;
+		}
+	}
+	public void OnChangeInside2Delta (Vector2 delta) {
+		if (_Inside2 != delta) {
+			if (this.Inside2 != null) this.Inside2.ApplyDelta (delta - _Inside2);
+			_Inside2 = delta;
+		}
+	}
 	public void ApplyDelta (Vector2 delta) {
 		ArrayList descendingBlocks = this.DescendingBlocks ();
 
@@ -181,7 +227,18 @@ public abstract class Block : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 			block.transform.position = block.transform.position + new Vector3 (delta.x, delta.y);
 		}
 	}
-
+	public int GetLength () {
+		if (Next != null)
+			return 1 + Next.GetLength ();
+		else
+			return 1;
+	}
+	public float GetHeight () {
+		if (Next != null)
+			return this.GetComponent<RectTransform> ().sizeDelta.y + Next.GetHeight ();
+		else
+			return this.GetComponent<RectTransform> ().sizeDelta.y;
+	}
 	public bool TryAttachInSomeConnectionWithBlock (Block block) {
 		if (this.Equals (block)) {
 			return false;
@@ -198,7 +255,11 @@ public abstract class Block : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 		}
 		return false;
 	}
-
+	private void Update () {
+		foreach (Connection connection in this.connections) {
+			connection.AbsolutePosition ();
+		}
+	}
 	public ArrayList DescendingBlocks () {
 		ArrayList arrayList = new ArrayList ();
 		arrayList.Add (this);
