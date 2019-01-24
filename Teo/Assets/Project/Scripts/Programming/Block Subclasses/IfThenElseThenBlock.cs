@@ -21,7 +21,7 @@ public class IfThenElseThenBlock : Block {
 		Connection previousConnection = new Connection (this, new Vector2 (6, 100), Connection.ConnectionType.Previous);
 		Connection nextConnection = new Connection (this, new Vector2 (7, 0), Connection.ConnectionType.Next);
 		Connection thenConnection = new Connection (this, new Vector2 (30, 77), Connection.ConnectionType.Inside1);
-		Connection then2Connection = new Connection (this, new Vector2 (29, 20), Connection.ConnectionType.Inside1);
+		Connection then2Connection = new Connection (this, new Vector2 (29, 20), Connection.ConnectionType.Inside2);
 		Connection conditionConnection = new Connection (this, new Vector2 (66, 95), Connection.ConnectionType.If);
 
 		previousConnection.SetAcceptableBlockType (BlockType.BlockTypeInscrution);

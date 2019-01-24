@@ -5,8 +5,8 @@ public class Forever : Block {
 	
 	bool canRun = false, canNext = false;
 	override public void Run () {
-
-		Debug.Log ("For\n");
+		
+		// Debug.Log ("Forever\n");
 		canRun = true;
 		// for (int i=0;i<10;i++) {
 		// 	// if (If.CheckCond()) {

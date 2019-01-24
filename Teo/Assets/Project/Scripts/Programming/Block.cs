@@ -4,6 +4,9 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public abstract class Block : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
+	public RectTransform Left, Mid, Bot;
+	public GameObject Bott, Leftt;
+	float upper, under;
 	public class Connection {
 		const float kMinimumAttachRadius = 20.0f;
 		public enum ConnectionType { ConnectionTypeMale, ConnectionTypeFemale, Main, Variable1, Variable2, If, Inside1, Inside2, Previous, Next };
@@ -28,12 +31,46 @@ public abstract class Block : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 		}
 
 		public Vector2 AbsolutePosition () {
-			
-			float parentScaleX = GameObject.FindWithTag ("Canvas").transform.localScale.x;
-			float parentScaleY = GameObject.FindWithTag ("Canvas").transform.localScale.y;
+			Vector2 parentScale = GameObject.FindWithTag ("Canvas").transform.localScale;
+			float tempX1 = 0;
+			if (this.connectionType == ConnectionType.Next) {
+				if (this.ownerBlock.Inside1 != null) {
+					Block In1 = this.ownerBlock.Inside1;
+					if (In1.GetLength () >= 1) {
+						tempX1 += In1.GetHeight ();
+
+					}
+				}
+				if (this.ownerBlock.Inside2 != null) {
+					Block In2 = this.ownerBlock.Inside2;
+					if (In2.GetLength () >= 1) {
+						tempX1 += In2.GetHeight ();
+					}
+				}
+				this.ownerBlock.OnChangeNextDelta (new Vector2 (0, -tempX1));
+			}
+			if (this.connectionType == ConnectionType.Inside2) {
+				if (this.ownerBlock.Inside1 != null) {
+					Block In1 = this.ownerBlock.Inside1;
+					if (In1.GetLength () >= 1) {
+						tempX1 += In1.GetHeight ();
+					}
+				}
+				this.ownerBlock.OnChangeInside2Delta (new Vector2 (0, -tempX1));
+			}
+			if (this.connectionType == ConnectionType.Next) {
+				this.ownerBlock.under = (new Vector2 (this.ownerBlock.transform.position.x, this.ownerBlock.transform.position.y) +
+					new Vector2 (((this.ownerBlock.rectTransform.sizeDelta.x / 100 * this.relativePosition.x) - this.ownerBlock.rectTransform.sizeDelta.x / 2) * parentScale.x,
+						((this.ownerBlock.rectTransform.sizeDelta.y / 100 * this.relativePosition.y) - this.ownerBlock.rectTransform.sizeDelta.y / 2) * parentScale.y - tempX1)).y;
+			}
+			if (this.connectionType == ConnectionType.Previous) {
+				this.ownerBlock.upper = (new Vector2 (this.ownerBlock.transform.position.x, this.ownerBlock.transform.position.y) +
+					new Vector2 (((this.ownerBlock.rectTransform.sizeDelta.x / 100 * this.relativePosition.x) - this.ownerBlock.rectTransform.sizeDelta.x / 2) * parentScale.x,
+						((this.ownerBlock.rectTransform.sizeDelta.y / 100 * this.relativePosition.y) - this.ownerBlock.rectTransform.sizeDelta.y / 2) * parentScale.y - tempX1)).y;
+			}
 			return new Vector2 (this.ownerBlock.transform.position.x, this.ownerBlock.transform.position.y) +
-				new Vector2 (((this.ownerBlock.rectTransform.sizeDelta.x/100*this.relativePosition.x) - this.ownerBlock.rectTransform.sizeDelta.x / 2) * parentScaleX,
-					((this.ownerBlock.rectTransform.sizeDelta.y/100*this.relativePosition.y) - this.ownerBlock.rectTransform.sizeDelta.y / 2) * parentScaleY);
+				new Vector2 (((this.ownerBlock.rectTransform.sizeDelta.x / 100 * this.relativePosition.x) - this.ownerBlock.rectTransform.sizeDelta.x / 2) * parentScale.x,
+					((this.ownerBlock.rectTransform.sizeDelta.y / 100 * this.relativePosition.y) - this.ownerBlock.rectTransform.sizeDelta.y / 2) * parentScale.y - tempX1);
 
 		}
 		float DistanceTo (Connection connection) {
@@ -131,7 +168,7 @@ public abstract class Block : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 		protected Shadow shadow;
 		public Block connectedBlock, If, Inside1, Inside2, Next, Variable1, Variable2, Previous;
 		public bool leaveClone = true;
-		public bool isStartBlock=false;
+		public bool isStartBlock = false;
 
 		public BlockType GetBlockType () {
 		return this.blockType;
@@ -173,7 +210,31 @@ public abstract class Block : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 		Connection firstConnection = this.connections[0] as Connection;
 		firstConnection.Detach ();
 	}
+	Vector2 _Next = Vector2.zero, _Inside2 = Vector2.zero;
+	public void OnChangeNextDelta (Vector2 delta) {
+		if (_Next != delta) {
+			if (this.Next != null) this.Next.ApplyDelta (delta - _Next);
+			Vector2 oldPos = Bot.anchoredPosition;
+			Bott.transform.position = Bott.transform.position + new Vector3 (0, (delta.y - _Next.y));
+			Left.anchoredPosition = Left.anchoredPosition + new Vector2 (0, (Bot.anchoredPosition.y - oldPos.y)) / 2;
+			Left.sizeDelta = Left.sizeDelta - new Vector2 (0, (Bot.anchoredPosition.y - oldPos.y));
+			// Bot.anchoredPosition=Bot.anchoredPosition+(delta-_Next);
+			// Leftt.transform.position = Leftt.transform.position + new Vector3 (0, (delta.y - _Next.y) );
+			// Leftt.transform.localScale = new Vector3(Leftt.transform.localScale.x,Leftt.transform.localScale.y + (delta.y-_Next.y));
 
+			_Next = delta;
+		}
+	}
+	public void OnChangeInside2Delta (Vector2 delta) {
+		if (_Inside2 != delta) {
+			if (this.Inside2 != null) this.Inside2.ApplyDelta (delta - _Inside2);
+			Vector2 oldPos = Bot.anchoredPosition;
+			Bott.transform.position = Bott.transform.position + new Vector3 (0, (delta.y - _Inside2.y));
+			Left.anchoredPosition = Left.anchoredPosition + new Vector2 (0, (Bot.anchoredPosition.y - _Inside2.y)) / 2;
+			Left.sizeDelta = Left.sizeDelta - new Vector2 (0, (Bot.anchoredPosition.y - oldPos.y));
+			_Inside2 = delta;
+		}
+	}
 	public void ApplyDelta (Vector2 delta) {
 		ArrayList descendingBlocks = this.DescendingBlocks ();
 
@@ -181,7 +242,18 @@ public abstract class Block : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 			block.transform.position = block.transform.position + new Vector3 (delta.x, delta.y);
 		}
 	}
-
+	public int GetLength () {
+		if (Next != null)
+			return 1 + Next.GetLength ();
+		else
+			return 1;
+	}
+	public float GetHeight () {
+		if (Next != null)
+			return (this.upper - this.under) + Next.GetHeight ();
+		else
+			return (this.upper - this.under);
+	}
 	public bool TryAttachInSomeConnectionWithBlock (Block block) {
 		if (this.Equals (block)) {
 			return false;
@@ -198,7 +270,11 @@ public abstract class Block : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 		}
 		return false;
 	}
-
+	private void Update () {
+		foreach (Connection connection in this.connections) {
+			connection.AbsolutePosition ();
+		}
+	}
 	public ArrayList DescendingBlocks () {
 		ArrayList arrayList = new ArrayList ();
 		arrayList.Add (this);
@@ -267,6 +343,9 @@ public abstract class Block : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 		ArrayList descendingBlocks = this.DescendingBlocks ();
 
 		foreach (Block block in descendingBlocks) {
+			Vector3 previousPosition = block.transform.position;
+			block.transform.SetParent (GameObject.FindWithTag ("Canvas").transform, false);
+			block.transform.position=previousPosition;
 			block.transform.SetSiblingIndex (block.transform.parent.childCount - 1);
 			block.SetShadowActive (true);
 		}
@@ -294,9 +373,27 @@ public abstract class Block : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 		Vector2 mousePos = new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
 
 		if (RectTransformUtility.RectangleContainsScreenPoint (rect, mousePos)) {
-			Vector3 previousPosition = this.transform.position;
-			this.transform.SetParent (codeContentGO.transform, false);
-			this.transform.position = previousPosition;
+			GameObject[] allChildren = GameObject.FindGameObjectsWithTag ("PackContent");
+			GameObject match = null;
+			foreach (GameObject child in allChildren) {
+				if (RectTransformUtility.RectangleContainsScreenPoint (child.GetComponent<RectTransform> (), mousePos) && child.transform.parent.transform.parent.GetComponent<CanvasGroup> ().alpha == 1) match = child;
+			}
+			if (match != null) {
+				ArrayList des = this.DescendingBlocks ();
+				foreach (Block block in des) {
+					Vector3 previousPosition = block.transform.position;
+					block.transform.SetParent (match.transform, false);
+					block.transform.position = previousPosition;
+				}
+
+			} else {
+				ArrayList des = this.DescendingBlocks ();
+				foreach (Block block in des) {
+					Vector3 previousPosition = block.transform.position;
+					block.transform.SetParent (codeContentGO.transform, false);
+					block.transform.position = previousPosition;
+				}
+			}
 		} else {
 			ArrayList des = this.DescendingBlocks ();
 			foreach (Block block in des) {
