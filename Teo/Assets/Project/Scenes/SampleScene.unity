@@ -2524,6 +2524,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2615,6 +2616,14 @@ MonoBehaviour:
   panelBtn: {fileID: 988566227}
   target: {fileID: 1466260324}
   pressed: 1
+--- !u!33 &519420034
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Mesh: {fileID: 0}
 --- !u!1 &520827253
 GameObject:
   m_ObjectHideFlags: 0
