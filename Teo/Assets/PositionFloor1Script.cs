@@ -11,6 +11,7 @@ public class PositionFloor1Script : MonoBehaviour {
     public TextMesh textMesh;
     void Start () {
         temp = textMesh.text;
+         this.gameObject.GetComponent<MeshRenderer>().sortingOrder = 5; 
     }
     public double getDistance () {
         if (distance <= 0) distance *= -1;

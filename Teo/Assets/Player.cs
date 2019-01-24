@@ -50,6 +50,10 @@ public class Player : MonoBehaviour {
 			anim.SetBool ("Attack", true);
 			Fire ();
 		}
+
+		if (Input.GetKey (KeyCode.K) ) {
+			Dash();
+		}
 	}
 	public void Jump () {
 		if (Time.time > nextJumpPress) {
@@ -59,10 +63,10 @@ public class Player : MonoBehaviour {
 		}
 	}
 	public void Dash () {
-		Debug.Log("Dash");
+		transform.Translate(Vector2.right * speed );
 	}
 	public void Firez () {
-		if ( Time.time > nextFire) {
+		if (Time.time > nextFire) {
 			nextFire = Time.time + fireRate;
 			anim.SetBool ("Attack", true);
 			Fire ();
@@ -76,6 +80,12 @@ public class Player : MonoBehaviour {
 
 	void Fire () {
 		Instantiate (HitArea, transform.position, transform.rotation);
+	}
+	void Die(){
+		anim.SetTrigger ("Death");
+		RectTransform rectTransform = GetComponent<RectTransform> ();
+		rectTransform.Rotate (new Vector3 (0, 0, 90));
+		control.isGameOver = true;
 	}
 
 	void OnTriggerEnter2D (Collider2D other) {
@@ -114,6 +124,4 @@ public class Player : MonoBehaviour {
 			"");
 	}
 
-
-	
 }
