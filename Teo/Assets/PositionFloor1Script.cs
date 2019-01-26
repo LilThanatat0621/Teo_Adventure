@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PositionFloor1Script : MonoBehaviour {
     // Start is called before the first frame update\
+    bool show = false;
     public Transform ThisPos, PlayerPos;
     double distance;
     public double posBlock;
@@ -11,7 +12,8 @@ public class PositionFloor1Script : MonoBehaviour {
     public TextMesh textMesh;
     void Start () {
         temp = textMesh.text;
-         this.gameObject.GetComponent<MeshRenderer>().sortingOrder = 5; 
+        ThisPos=this.gameObject.GetComponent<Transform> ();
+        this.gameObject.GetComponent<MeshRenderer> ().sortingOrder = 5;
     }
     public double getDistance () {
         if (distance <= 0) distance *= -1;
@@ -20,7 +22,20 @@ public class PositionFloor1Script : MonoBehaviour {
     }
     // Update is called once per frame
     void Update () {
-        distance = PlayerPos.position.x - posBlock;
-        textMesh.text = (temp + " = " + (getDistance ()).ToString ("0.00"));
+        distance = PlayerPos.position.x - ThisPos.position.x;
+        if (show) textMesh.text = (temp + " = " + (getDistance ()).ToString ("0.00"));
+        else textMesh.text = "";
+        // show=false; 
+    }
+
+    void OnTriggerStay2D (Collider2D other) {
+         if (other.gameObject.name == "Redar")
+            show = true;
+
+    }
+    void OnTriggerExit2D (Collider2D other) {
+        if (other.gameObject.name == "Redar")
+            show = false;
+
     }
 }
