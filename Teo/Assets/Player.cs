@@ -72,6 +72,9 @@ public class Player : MonoBehaviour {
 			Fire ();
 		}
 	}
+	void Fire (float Degree) {
+		Instantiate (HitArea, transform.position, Quaternion.Euler(0,0,Degree));
+	}
 	public void Walk () {
 		anim.SetFloat ("Speed", 1f);
 		transform.Translate (Vector2.right * speed * Time.deltaTime);
