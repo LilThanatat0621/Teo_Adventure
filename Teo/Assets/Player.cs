@@ -31,15 +31,16 @@ public class Player : MonoBehaviour {
 		anim.SetBool ("Grounded", true);
 		anim.SetBool ("Jump", false);
 		anim.SetBool ("Attack", false);
+		
 		// anim.SetFloat ("Speed", Mathf.Abs (Input.GetAxis ("Horizontal")));
 		if (Input.GetAxis ("Horizontal") < -0.1f) {
 			transform.Translate (Vector2.right * speed * Time.deltaTime);
 			transform.eulerAngles = new Vector2 (0, 180);
-			anim.SetFloat ("Speed", Mathf.Abs (Input.GetAxis ("Horizontal")));
+			
 		} else if (Input.GetAxis ("Horizontal") > 0.1f) {
 			transform.Translate (Vector2.right * speed * Time.deltaTime);
 			transform.eulerAngles = new Vector2 (0, 0);
-			anim.SetFloat ("Speed", Mathf.Abs (Input.GetAxis ("Horizontal")));
+	
 		}
 		if (Input.GetButtonDown ("Jump")) {
 			Jump ();
@@ -54,6 +55,7 @@ public class Player : MonoBehaviour {
 		if (Input.GetKey (KeyCode.K) ) {
 			Dash();
 		}
+		anim.SetFloat ("Speed", Mathf.Abs (Input.GetAxis ("Horizontal")));
 	}
 	public void Jump () {
 		if (Time.time > nextJumpPress) {
