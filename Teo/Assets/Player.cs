@@ -19,7 +19,6 @@ public class Player : MonoBehaviour {
 
 	public GameLogic control;
 	public GameObject HitArea;
-
 	public int healthBar = 100;
 	bool dash=false;
 	float dashSpeed=0;
@@ -47,10 +46,8 @@ public class Player : MonoBehaviour {
 			Jump ();
 		}
 
-		if (Input.GetKey (KeyCode.P) && Time.time > nextFire) {
-			nextFire = Time.time + fireRate;
-			anim.SetBool ("Attack", true);
-			Fire ();
+		if (Input.GetKey (KeyCode.P) ) {
+			Firez();
 		}
 
 		if (Input.GetKey (KeyCode.K) ) {
@@ -82,10 +79,9 @@ public class Player : MonoBehaviour {
 		if (Time.time > nextFire) {
 			nextFire = Time.time + fireRate;
 			anim.SetBool ("Attack", true);
-			Fire ();
 		}
 	}
-	void Fire (float Degree) {
+	public void Fire (float Degree) {
 		Instantiate (HitArea, transform.position, Quaternion.Euler(0,0,Degree));
 	}
 	public void Walk () {
@@ -94,7 +90,7 @@ public class Player : MonoBehaviour {
 		transform.eulerAngles = new Vector2 (0, 0);
 	}
 
-	void Fire () {
+	public void Fires () {
 		Instantiate (HitArea, transform.position, transform.rotation);
 	}
 	void Die(){
