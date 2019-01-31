@@ -5,13 +5,13 @@ public class Walker : MonoBehaviour {
 public float walkSpeed = 3.0f;
 	
 	public float walkTime;
-	private float walkingDirection = -1.0f;
+	private float walkingDirection = 1.0f;
 	public bool facing = true;
 	Vector3 walkAmount;
 	void Update () {
 		walkAmount.x = walkingDirection * walkSpeed * Time.deltaTime;
 		walkTime+=Time.deltaTime;
-		 if ( walkTime >=6 ){
+		 if ( walkTime >= 4 ){
 			//  walkingDirection *= -1.0f;
 			 walkTime=0;
 			facing = !facing;
@@ -28,8 +28,9 @@ public float walkSpeed = 3.0f;
 		
 		//  else if (walkingDirection < 0.0f && transform.position.x <= wallLeft)
 		// 	 walkingDirection = 1.0f;
-        transform.Translate(walkAmount);
 		
+        transform.Translate(walkAmount);
+		transform.position=new Vector3(transform.position.x,transform.position.y,0);
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
