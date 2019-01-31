@@ -20,8 +20,8 @@ public class Player : MonoBehaviour {
 	public GameLogic control;
 	public GameObject HitArea;
 	public int healthBar = 100;
-	bool dash=false;
-	float dashSpeed=0;
+	bool dash = false;
+	float dashSpeed = 0;
 	void Start () {
 		rigidbody2d = gameObject.GetComponent<Rigidbody2D> ();
 		anim = gameObject.GetComponent<Animator> ();
@@ -30,39 +30,40 @@ public class Player : MonoBehaviour {
 	void Update () {
 		anim.SetBool ("Grounded", true);
 		anim.SetBool ("Jump", false);
-		anim.SetBool ("Attack", false);
-		
+		// anim.SetBool ("Attack", false);
+
 		// anim.SetFloat ("Speed", Mathf.Abs (Input.GetAxis ("Horizontal")));
 		if (Input.GetAxis ("Horizontal") < -0.1f) {
 			transform.Translate (Vector2.right * speed * Time.deltaTime);
 			transform.eulerAngles = new Vector2 (0, 180);
-			
+
 		} else if (Input.GetAxis ("Horizontal") > 0.1f) {
 			transform.Translate (Vector2.right * speed * Time.deltaTime);
 			transform.eulerAngles = new Vector2 (0, 0);
-	
+
 		}
 		if (Input.GetButtonDown ("Jump")) {
 			Jump ();
 		}
 
-		if (Input.GetKey (KeyCode.P) ) {
-			Firez();
+		if (Input.GetKey (KeyCode.P)) {
+			Firez ();
 		}
 
-		if (Input.GetKey (KeyCode.K) ) {
-			Dash();
-			
+		if (Input.GetKey (KeyCode.K)) {
+			Dash ();
+
 		}
-		if(dash&&dashSpeed<=7){
-			dashSpeed+=0.5f;
+		if (dash && dashSpeed <= 7) {
+			dashSpeed += 0.5f;
 		}
-		if(dash&&dashSpeed>=7){
-			dashSpeed=0;
-			dash=false;
+		if (dash && dashSpeed >= 7) {
+			dashSpeed = 0;
+			dash = false;
 		}
 		transform.Translate (Vector2.right * dashSpeed * Time.deltaTime);
 		anim.SetFloat ("Speed", Mathf.Abs (Input.GetAxis ("Horizontal")));
+		transform.position = new Vector3 (transform.position.x, transform.position.y, 0);
 	}
 	public void Jump () {
 		if (Time.time > nextJumpPress) {
@@ -73,16 +74,19 @@ public class Player : MonoBehaviour {
 	}
 	public void Dash () {
 		// transform.Translate(Vector2.right * speed );
-		dash=true;
+		dash = true;
 	}
 	public void Firez () {
 		if (Time.time > nextFire) {
 			nextFire = Time.time + fireRate;
+			Debug.Log ("Fire");
 			anim.SetBool ("Attack", true);
 		}
 	}
 	public void Fire (float Degree) {
-		Instantiate (HitArea, transform.position, Quaternion.Euler(0,0,Degree));
+
+		Instantiate (HitArea, new Vector3 (transform.position.x + 10, transform.position.y + 10, transform.position.z), Quaternion.Euler (0, 0, Degree));
+		anim.SetBool ("Attack", false);
 	}
 	public void Walk () {
 		anim.SetFloat ("Speed", 1f);
@@ -91,9 +95,13 @@ public class Player : MonoBehaviour {
 	}
 
 	public void Fires () {
-		Instantiate (HitArea, transform.position, transform.rotation);
+		if (anim.GetBool ("Attack")) {
+			if (transform.rotation.y == 0) Instantiate (HitArea, new Vector3 (transform.position.x + 0.5f, transform.position.y + 0.5f, transform.position.z), transform.rotation);
+			else Instantiate (HitArea, new Vector3 (transform.position.x - 0.5f, transform.position.y + 0.5f, transform.position.z), transform.rotation);
+		}
+		anim.SetBool ("Attack", false);
 	}
-	void Die(){
+	void Die () {
 		anim.SetTrigger ("Death");
 		RectTransform rectTransform = GetComponent<RectTransform> ();
 		rectTransform.Rotate (new Vector3 (0, 0, 90));
