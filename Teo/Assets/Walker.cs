@@ -12,7 +12,7 @@ public float walkSpeed = 3.0f;
 		walkAmount.x = walkingDirection * walkSpeed * Time.deltaTime;
 		walkTime+=Time.deltaTime;
 		 if ( walkTime >=6 ){
-			 walkingDirection *= -1.0f;
+			//  walkingDirection *= -1.0f;
 			 walkTime=0;
 			facing = !facing;
 		 }
