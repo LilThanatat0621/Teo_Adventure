@@ -10,6 +10,7 @@ TagManager:
   - CodeContent
   - PackContent
   - Redar
+  - bullet
   layers:
   - Default
   - TransparentFX

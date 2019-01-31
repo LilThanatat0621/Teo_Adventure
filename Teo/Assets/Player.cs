@@ -18,9 +18,11 @@ public class Player : MonoBehaviour {
 	private Animator anim;
 
 	public GameLogic control;
+	bool walking = false;
 	public GameObject HitArea;
 	public int healthBar = 100;
 	bool dash = false;
+	public double nowSpeed=0;
 	float dashSpeed = 0;
 	void Start () {
 		rigidbody2d = gameObject.GetComponent<Rigidbody2D> ();
@@ -42,6 +44,14 @@ public class Player : MonoBehaviour {
 			transform.eulerAngles = new Vector2 (0, 0);
 
 		}
+		if(nowSpeed>=1){
+			transform.Translate (Vector2.right * speed * Time.deltaTime);
+			transform.eulerAngles = new Vector2 (0, 0);
+		}
+		if (walking&&nowSpeed<=1) {
+			
+			nowSpeed+=0.2;
+		}
 		if (Input.GetButtonDown ("Jump")) {
 			Jump ();
 		}
@@ -62,7 +72,10 @@ public class Player : MonoBehaviour {
 			dash = false;
 		}
 		transform.Translate (Vector2.right * dashSpeed * Time.deltaTime);
-		anim.SetFloat ("Speed", Mathf.Abs (Input.GetAxis ("Horizontal")));
+		if(nowSpeed>=0&&!walking)nowSpeed-=0.1;
+		// anim.SetFloat ("Speed", Mathf.Abs (Input.GetAxis ("Horizontal")));
+		anim.SetFloat ("Speed", (float)nowSpeed);
+		walking = false;
 		transform.position = new Vector3 (transform.position.x, transform.position.y, 0);
 	}
 	public void Jump () {
@@ -79,7 +92,7 @@ public class Player : MonoBehaviour {
 	public void Firez () {
 		if (Time.time > nextFire) {
 			nextFire = Time.time + fireRate;
-			Debug.Log ("Fire");
+			// Debug.Log ("Fire");
 			anim.SetBool ("Attack", true);
 		}
 	}
@@ -89,9 +102,7 @@ public class Player : MonoBehaviour {
 		anim.SetBool ("Attack", false);
 	}
 	public void Walk () {
-		anim.SetFloat ("Speed", 1f);
-		transform.Translate (Vector2.right * speed * Time.deltaTime);
-		transform.eulerAngles = new Vector2 (0, 0);
+		walking = true;
 	}
 
 	public void Fires () {
@@ -101,7 +112,7 @@ public class Player : MonoBehaviour {
 		}
 		anim.SetBool ("Attack", false);
 	}
-	void Die () {
+	public void Die () {
 		anim.SetTrigger ("Death");
 		RectTransform rectTransform = GetComponent<RectTransform> ();
 		rectTransform.Rotate (new Vector3 (0, 0, 90));

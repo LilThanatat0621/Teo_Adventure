@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Vari : Block {
 	public string var;
-	public PositionFloor1Script get;
+	public Walker get;
 	public Text childText;
 	override public double GetValue () {
 		// Debug.Log(get.getDistance());
