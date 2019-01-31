@@ -21,7 +21,8 @@ public class Player : MonoBehaviour {
 	public GameObject HitArea;
 
 	public int healthBar = 100;
-
+	bool dash=false;
+	float dashSpeed=0;
 	void Start () {
 		rigidbody2d = gameObject.GetComponent<Rigidbody2D> ();
 		anim = gameObject.GetComponent<Animator> ();
@@ -54,7 +55,16 @@ public class Player : MonoBehaviour {
 
 		if (Input.GetKey (KeyCode.K) ) {
 			Dash();
+			
 		}
+		if(dash&&dashSpeed<=7){
+			dashSpeed+=0.5f;
+		}
+		if(dash&&dashSpeed>=7){
+			dashSpeed=0;
+			dash=false;
+		}
+		transform.Translate (Vector2.right * dashSpeed * Time.deltaTime);
 		anim.SetFloat ("Speed", Mathf.Abs (Input.GetAxis ("Horizontal")));
 	}
 	public void Jump () {
@@ -65,7 +75,8 @@ public class Player : MonoBehaviour {
 		}
 	}
 	public void Dash () {
-		transform.Translate(Vector2.right * speed );
+		// transform.Translate(Vector2.right * speed );
+		dash=true;
 	}
 	public void Firez () {
 		if (Time.time > nextFire) {
