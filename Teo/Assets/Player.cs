@@ -75,6 +75,7 @@ public class Player : MonoBehaviour {
 		if(nowSpeed>=0&&!walking)nowSpeed-=0.1;
 		// anim.SetFloat ("Speed", Mathf.Abs (Input.GetAxis ("Horizontal")));
 		anim.SetFloat ("Speed", (float)nowSpeed);
+		anim.SetBool ("Dash", dash);
 		walking = false;
 		transform.position = new Vector3 (transform.position.x, transform.position.y, 0);
 	}

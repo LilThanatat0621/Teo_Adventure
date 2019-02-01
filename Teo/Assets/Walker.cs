@@ -30,7 +30,13 @@ public class Walker : MonoBehaviour {
 		if (show) textMesh.text = (temp + " = " + (getDistance ()).ToString ("0.00"));
 		else textMesh.text = "";
 
-		if (hp <= 0) Destroy (this.gameObject);
+		if (hp <= 0) {
+			distance=10000;
+			transform.position = new Vector3 (transform.position.x+1000, transform.position.y, 0);
+			Destroy (this.gameObject);
+			distance=10000;
+			transform.position = new Vector3 (transform.position.x+1000, transform.position.y, 0);
+		}
 		walkAmount.x = walkingDirection * walkSpeed * Time.deltaTime;
 		walkTime += Time.deltaTime;
 		if (walkTime >= length) {

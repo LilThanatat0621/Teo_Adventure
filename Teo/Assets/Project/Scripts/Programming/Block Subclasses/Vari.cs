@@ -4,10 +4,15 @@ using UnityEngine.UI;
 public class Vari : Block {
 	public string var;
 	public Walker get;
+	public EnemyDrop get2;
 	public Text childText;
 	override public double GetValue () {
 		// Debug.Log(get.getDistance());
-		return get.getDistance();
+		// Debug.Log(get.getDistance());
+		if(get!=null) return get.getDistance();
+		if(get2!=null) return get2.getDistance();
+		
+		return 1000;
 	}
 	// private void Start() {
 	// 	childText.text=name;
