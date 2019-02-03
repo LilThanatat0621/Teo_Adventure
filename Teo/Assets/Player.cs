@@ -22,7 +22,7 @@ public class Player : MonoBehaviour {
 	public GameObject HitArea;
 	public int healthBar = 100;
 	bool dash = false;
-	public double nowSpeed=0;
+	public double nowSpeed = 0;
 	float dashSpeed = 0;
 	void Start () {
 		rigidbody2d = gameObject.GetComponent<Rigidbody2D> ();
@@ -44,13 +44,13 @@ public class Player : MonoBehaviour {
 			transform.eulerAngles = new Vector2 (0, 0);
 
 		}
-		if(nowSpeed>=1){
+		if (nowSpeed >= 1) {
 			transform.Translate (Vector2.right * speed * Time.deltaTime);
 			transform.eulerAngles = new Vector2 (0, 0);
 		}
-		if (walking&&nowSpeed<=1) {
-			
-			nowSpeed+=0.2;
+		if (walking && nowSpeed <= 1) {
+
+			nowSpeed += 0.2;
 		}
 		if (Input.GetButtonDown ("Jump")) {
 			Jump ();
@@ -70,11 +70,12 @@ public class Player : MonoBehaviour {
 		if (dash && dashSpeed >= 7) {
 			dashSpeed = 0;
 			dash = false;
+			
 		}
 		transform.Translate (Vector2.right * dashSpeed * Time.deltaTime);
-		if(nowSpeed>=0&&!walking)nowSpeed-=0.1;
+		if (nowSpeed >= 0 && !walking) nowSpeed -= 0.1;
 		// anim.SetFloat ("Speed", Mathf.Abs (Input.GetAxis ("Horizontal")));
-		anim.SetFloat ("Speed", (float)nowSpeed);
+		anim.SetFloat ("Speed", (float) nowSpeed);
 		anim.SetBool ("Dash", dash);
 		walking = false;
 		transform.position = new Vector3 (transform.position.x, transform.position.y, 0);
@@ -88,7 +89,11 @@ public class Player : MonoBehaviour {
 	}
 	public void Dash () {
 		// transform.Translate(Vector2.right * speed );
+		anim.SetBool ("ToDash", true);
+	}
+	public void ToDash () {
 		dash = true;
+		anim.SetBool ("ToDash", false);
 	}
 	public void Firez () {
 		if (Time.time > nextFire) {
@@ -115,8 +120,8 @@ public class Player : MonoBehaviour {
 	}
 	public void Die () {
 		anim.SetTrigger ("Death");
-		RectTransform rectTransform = GetComponent<RectTransform> ();
-		rectTransform.Rotate (new Vector3 (0, 0, 90));
+		// RectTransform rectTransform = GetComponent<RectTransform> ();
+		// rectTransform.Rotate (new Vector3 (0, 0, 90));
 		control.isGameOver = true;
 	}
 
@@ -144,8 +149,8 @@ public class Player : MonoBehaviour {
 	IEnumerator WaitDeath () {
 		yield return new WaitForSeconds (2);
 		anim.SetTrigger ("Death");
-		RectTransform rectTransform = GetComponent<RectTransform> ();
-		rectTransform.Rotate (new Vector3 (0, 0, 90));
+		// RectTransform rectTransform = GetComponent<RectTransform> ();
+		// rectTransform.Rotate (new Vector3 (0, 0, 90));
 		control.isGameOver = true;
 	}
 	void OnGUI () {
