@@ -70,7 +70,7 @@ public class Player : MonoBehaviour {
 		if (dash && dashSpeed >= 7) {
 			dashSpeed = 0;
 			dash = false;
-			
+
 		}
 		transform.Translate (Vector2.right * dashSpeed * Time.deltaTime);
 		if (nowSpeed >= 0 && !walking) nowSpeed -= 0.1;
@@ -141,8 +141,9 @@ public class Player : MonoBehaviour {
 				healthBar = 0;
 				StartCoroutine (WaitDeath ());
 			}
-		} else if (other.gameObject.name == "danger") {
-			StartCoroutine (WaitDeath ());
+		} else if (other.gameObject.name == "danger" || other.tag == "bullet") {
+			Die ();
+			// StartCoroutine (WaitDeath ());
 		}
 
 	}
