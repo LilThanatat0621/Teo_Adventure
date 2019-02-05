@@ -143,15 +143,13 @@ MonoBehaviour:
   dashSound: {fileID: 8300000, guid: df538c99fd34744ccb3287220451a721, type: 3}
   crawlSound: {fileID: 8300000, guid: f2ab4e6b5ceb549c6b7a5f84677a4b5b, type: 3}
   deathSound: {fileID: 8300000, guid: 8dae600d279854adbb261784fa5cc20a, type: 3}
-  spawnSound: {fileID: 0}
+  spawnSound: {fileID: 8300000, guid: 2ad8b3dad0c664034bfe2e8ef002432b, type: 3}
   warpSound: {fileID: 8300000, guid: dd356ce12bbe04e10b2e940b2b77be4b, type: 3}
   speed: 1
   jumpSpeed: 9
   maxSpeed: 10
   jumpPower: 20
   grounded: 0
-  A: {fileID: 0}
-  B: {fileID: 0}
   jumpRate: 1
   nextJumpPress: 0
   fireRate: 0.3

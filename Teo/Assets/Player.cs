@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
 	public float maxSpeed = 10f;
 	public float jumpPower = 20f;
 	public bool grounded;
-	public BoxCollider2D A,B;
+	 BoxCollider2D A,B;
 	public float jumpRate = 1f;
 	public float nextJumpPress = 0.0f;
 	public float fireRate = 0.3f;
@@ -31,6 +31,13 @@ public class Player : MonoBehaviour {
 		rigidbody2d = gameObject.GetComponent<Rigidbody2D> ();
 		anim = gameObject.GetComponent<Animator> ();
 		aSource = GetComponent<AudioSource>();
+		BoxCollider2D[] temp=gameObject.GetComponents<BoxCollider2D> ();
+		A=temp[0];
+		B=temp[1];
+		aSource.clip = spawnSound;
+			if(!aSource.isPlaying){
+				aSource.Play();
+			}
 	}
 
 	void Update () {
@@ -111,7 +118,7 @@ public class Player : MonoBehaviour {
 			dash = false;
 
 		}
-		transform.Translate (Vector2.right * dashSpeed * Time.deltaTime);
+		if(!anim.GetBool ("ToDash"))transform.Translate (Vector2.right * dashSpeed * Time.deltaTime);
 		if (nowSpeed >= 0 && !walking) nowSpeed -= 0.1;
 		// anim.SetFloat ("Speed", Mathf.Abs (Input.GetAxis ("Horizontal")));
 		anim.SetFloat ("Speed", (float) nowSpeed);

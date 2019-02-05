@@ -32,6 +32,8 @@ public class EnemyDrop : MonoBehaviour {
 
         if (player.position.x - transform.position.x >= -0.2) {
             this.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+        //     AudioSource audio = GetComponent<AudioSource>();
+        // audio.Play();
         }
     }
 
@@ -52,5 +54,7 @@ public class EnemyDrop : MonoBehaviour {
             other.gameObject.GetComponent<Player> ().Die ();
 
         }
+        
+
     }
 }
