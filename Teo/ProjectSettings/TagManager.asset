@@ -11,6 +11,7 @@ TagManager:
   - PackContent
   - Redar
   - bullet
+  - Danger
   layers:
   - Default
   - TransparentFX

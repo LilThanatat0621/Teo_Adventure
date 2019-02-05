@@ -7,7 +7,7 @@ public class Player : MonoBehaviour {
 	public float maxSpeed = 10f;
 	public float jumpPower = 20f;
 	public bool grounded;
-
+	public BoxCollider2D A,B;
 	public float jumpRate = 1f;
 	public float nextJumpPress = 0.0f;
 	public float fireRate = 0.3f;
@@ -30,6 +30,9 @@ public class Player : MonoBehaviour {
 	}
 
 	void Update () {
+		Vector3 NewSizeCollder=new Vector3(this.GetComponent<SpriteRenderer>().bounds.size.x/transform.localScale.x,this.GetComponent<SpriteRenderer>().bounds.size.y/transform.localScale.y,this.GetComponent<SpriteRenderer>().bounds.size.z/transform.localScale.z);
+		A.size=NewSizeCollder;
+		B.size=NewSizeCollder;
 		anim.SetBool ("Grounded", true);
 		anim.SetBool ("Jump", false);
 		// anim.SetBool ("Attack", false);
@@ -141,7 +144,7 @@ public class Player : MonoBehaviour {
 				healthBar = 0;
 				StartCoroutine (WaitDeath ());
 			}
-		} else if (other.gameObject.name == "danger" || other.tag == "bullet") {
+		} else if (other.gameObject.name == "danger" || other.tag == "Danger") {
 			Die ();
 			// StartCoroutine (WaitDeath ());
 		}
