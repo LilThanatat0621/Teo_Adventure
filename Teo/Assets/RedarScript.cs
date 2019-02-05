@@ -5,13 +5,14 @@ using UnityEngine;
 public class RedarScript : MonoBehaviour
 {
     public bool RedarOn=false;
-    public Transform Player;
-    public Transform Redar;
+     Transform Player;
+     Transform Redar;
     public float maxScale=150;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Player=GameObject.FindWithTag ("Player").transform;
+        Redar=transform;
     }
 
     // Update is called once per frame
