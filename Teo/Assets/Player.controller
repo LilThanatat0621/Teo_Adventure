@@ -964,3 +964,4 @@ AnimatorStateMachine:
   m_ExitPosition: {x: -180, y: -96, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 1102960846141070318}
+ 

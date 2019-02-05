@@ -2,6 +2,9 @@
 using UnityEngine;
 
 public class Player : MonoBehaviour {
+	public AudioClip runSound,jumpSound,fireSound,dashSound,crawlSound,deathSound,spawnSound,warpSound;
+	private AudioSource aSource;
+	// AudioSource = source;
 	public float speed = 1f;
 	public float jumpSpeed = 9f;
 	public float maxSpeed = 10f;
@@ -27,6 +30,7 @@ public class Player : MonoBehaviour {
 	void Start () {
 		rigidbody2d = gameObject.GetComponent<Rigidbody2D> ();
 		anim = gameObject.GetComponent<Animator> ();
+		aSource = GetComponent<AudioSource>();
 	}
 
 	void Update () {
@@ -35,6 +39,37 @@ public class Player : MonoBehaviour {
 		B.size=NewSizeCollder;
 		anim.SetBool ("Grounded", true);
 		anim.SetBool ("Jump", false);
+		AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo(0);
+		if(state.IsName("Jump")){
+			aSource.clip = jumpSound;
+			if(!aSource.isPlaying){
+				aSource.Play();
+			}
+		}
+		if(state.IsName("Attack")){
+			aSource.clip = fireSound;
+			if(!aSource.isPlaying){
+				aSource.Play();
+			}
+		}
+			if(state.IsName("Dash")){
+			aSource.clip = dashSound;
+			if(!aSource.isPlaying){
+				aSource.Play();
+			}
+		}
+			if(state.IsName("Death")){
+			aSource.clip = deathSound;
+			if(!aSource.isPlaying){
+				aSource.Play();
+			}
+		}
+			if(state.IsName("Run")){
+			aSource.clip = runSound;
+			if(!aSource.isPlaying){
+				aSource.Play();
+			}
+		}
 		// anim.SetBool ("Attack", false);
 
 		// anim.SetFloat ("Speed", Mathf.Abs (Input.GetAxis ("Horizontal")));
@@ -64,6 +99,7 @@ public class Player : MonoBehaviour {
 		}
 
 		if (Input.GetKey (KeyCode.K)) {
+		
 			Dash ();
 
 		}
@@ -111,6 +147,7 @@ public class Player : MonoBehaviour {
 		anim.SetBool ("Attack", false);
 	}
 	public void Walk () {
+	
 		walking = true;
 	}
 
@@ -122,6 +159,7 @@ public class Player : MonoBehaviour {
 		anim.SetBool ("Attack", false);
 	}
 	public void Die () {
+		
 		anim.SetTrigger ("Death");
 		// RectTransform rectTransform = GetComponent<RectTransform> ();
 		// rectTransform.Rotate (new Vector3 (0, 0, 90));
