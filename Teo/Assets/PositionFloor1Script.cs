@@ -17,6 +17,7 @@ public class PositionFloor1Script : MonoBehaviour {
         this.gameObject.GetComponent<MeshRenderer> ().sortingOrder = 5;
     }
     public double getDistance () {
+        distance = PlayerPos.position.x - ThisPos.position.x;
         if (distance <= 0) distance *= -1;
         return distance * 10;
 
@@ -29,7 +30,7 @@ public class PositionFloor1Script : MonoBehaviour {
     }
     // Update is called once per frame
     void Update () {
-        distance = PlayerPos.position.x - ThisPos.position.x;
+        
         if (show) textMesh.text = ("x" + temp + " = " + (getDistance ()).ToString ("0.00") + "\n" + "y" + temp + " = " + (getDistanceY ()).ToString ("0.00"));
         else textMesh.text = "";
         // show=false; 

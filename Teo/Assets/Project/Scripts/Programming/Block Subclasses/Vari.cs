@@ -6,7 +6,7 @@ public class Vari : Block {
 	public Walker get;
 	public EnemyDrop get2;
 	public Text childText;
-	PositionFloor1Script get3;
+	public PositionFloor1Script get3;
 	public bool isY;
 	override public double GetValue () {
 		// Debug.Log(get.getDistance());
@@ -14,8 +14,11 @@ public class Vari : Block {
 		if (get != null) return get.getDistance ();
 		if (get2 != null) return get2.getDistance ();
 		if (get3 != null) {
-			if(!isY)return get3.getDistance ();
-			else return get3.getDistanceY ();
+			if (!isY) {
+				// Debug.Log(get3.getDistance ());
+				// if(get3.getDistance ()==0)Debug.Break();
+				return get3.getDistance ();
+			} else return get3.getDistanceY ();
 		}
 
 		return 1000;
@@ -23,6 +26,12 @@ public class Vari : Block {
 	// private void Start() {
 	// 	childText.text=name;
 	// }
+
+	private void Update () {
+		if (get == null && get2 == null && get3 == null) {
+			if (GameObject.FindWithTag ("DangerBullet") != null) get3 = GameObject.FindWithTag ("DangerBullet").GetComponent<PositionFloor1Script> ();
+		}
+	}
 	override protected void CreateConnections () {
 		var = childText.text;
 		this.blockType = BlockType.BlockTypeNumeric;

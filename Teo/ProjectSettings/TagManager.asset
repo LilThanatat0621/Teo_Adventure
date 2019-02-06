@@ -12,6 +12,7 @@ TagManager:
   - Redar
   - bullet
   - Danger
+  - DangerBullet
   layers:
   - Default
   - TransparentFX

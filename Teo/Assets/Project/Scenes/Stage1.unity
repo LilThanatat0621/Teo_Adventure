@@ -1087,7 +1087,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 597964523}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.9999998
+  m_Size: 0.99999964
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1494,6 +1494,8 @@ MonoBehaviour:
   get: {fileID: 0}
   get2: {fileID: 0}
   childText: {fileID: 1873056717}
+  get3: {fileID: 1228742671}
+  isY: 0
 --- !u!114 &368723991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2532,6 +2534,8 @@ MonoBehaviour:
   get: {fileID: 0}
   get2: {fileID: 0}
   childText: {fileID: 1212625151}
+  get3: {fileID: 803964142}
+  isY: 0
 --- !u!1 &521450280
 GameObject:
   m_ObjectHideFlags: 0
@@ -2966,8 +2970,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 562854493}
   m_HandleRect: {fileID: 562854492}
   m_Direction: 2
-  m_Value: 0.9999989
-  m_Size: 0.61
+  m_Value: 0.99999946
+  m_Size: 0.6100001
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3620,7 +3624,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -3.0405002, y: 616.3871}
+  m_AnchoredPosition: {x: -3.0405002, y: 196.46387}
   m_SizeDelta: {x: 6.1, y: 860.6}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &741184099
@@ -3875,6 +3879,8 @@ MonoBehaviour:
   get: {fileID: 0}
   get2: {fileID: 0}
   childText: {fileID: 355217709}
+  get3: {fileID: 1025071916}
+  isY: 0
 --- !u!114 &788909215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3958,7 +3964,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7d9b059429556340894d81aa3cfa8e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  posBlock: 10.01475
 --- !u!102 &803964143
 TextMesh:
   serializedVersion: 3
@@ -5269,7 +5274,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7d9b059429556340894d81aa3cfa8e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  posBlock: 10.01475
 --- !u!102 &1025071917
 TextMesh:
   serializedVersion: 3
@@ -5721,7 +5725,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 647273541}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99999994
+  m_Size: 0.99999976
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5916,7 +5920,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7d9b059429556340894d81aa3cfa8e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  posBlock: 10.01475
 --- !u!102 &1228742672
 TextMesh:
   serializedVersion: 3
@@ -6857,7 +6860,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0000044442017, y: 0.000106735795}
+  m_AnchoredPosition: {x: -0.0000031842146, y: 0.000106735795}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1525291117
@@ -7615,8 +7618,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1622406105}
   m_HandleRect: {fileID: 1622406104}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.2823121
+  m_Value: 0.6812654
+  m_Size: 0.28377056
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8450,7 +8453,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7d9b059429556340894d81aa3cfa8e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  posBlock: 10.01475
 --- !u!102 &1799409063
 TextMesh:
   serializedVersion: 3
@@ -8896,6 +8898,8 @@ MonoBehaviour:
   get: {fileID: 0}
   get2: {fileID: 0}
   childText: {fileID: 1864948134}
+  get3: {fileID: 1799409062}
+  isY: 0
 --- !u!114 &1844612639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9614,7 +9618,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000020543366, y: 0}
+  m_AnchoredPosition: {x: 0.000020543366, y: -0.00000005215455}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &2067329329
