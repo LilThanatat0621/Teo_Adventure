@@ -11,12 +11,14 @@ public class EnemyDrop : MonoBehaviour {
     Vector3 walkAmount;
     public string temp;
     public TextMesh textMesh;
-
+AudioSource audio;
     void Start () {
+        player = GameObject.FindWithTag ("Player").transform;
         temp = textMesh.text;
         // ThisPos = this.gameObject.GetComponent<Transform> ();
         ThisPos.gameObject.GetComponent<MeshRenderer> ().sortingOrder = 5;
         PlayerPos=player;
+         audio= GetComponent<AudioSource>();
     }
     public double getDistance () {
         if (distance <= 0) distance *= -1;
@@ -32,8 +34,7 @@ public class EnemyDrop : MonoBehaviour {
 
         if (player.position.x - transform.position.x >= -0.2) {
             this.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
-        //     AudioSource audio = GetComponent<AudioSource>();
-        // audio.Play();
+            if(audio!=null){audio.Play();audio=null;}
         }
     }
 

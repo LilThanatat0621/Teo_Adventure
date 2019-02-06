@@ -16,6 +16,7 @@ public class Walker : MonoBehaviour {
 
 	void Start () {
 		temp = textMesh.text;
+		PlayerPos = GameObject.FindWithTag ("Player").transform;
 		// ThisPos = this.gameObject.GetComponent<Transform> ();
 		ThisPos.gameObject.GetComponent<MeshRenderer> ().sortingOrder = 5;
 	}

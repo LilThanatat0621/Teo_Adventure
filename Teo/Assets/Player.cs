@@ -118,7 +118,8 @@ public class Player : MonoBehaviour {
 			dash = false;
 
 		}
-		if(!anim.GetBool ("ToDash"))transform.Translate (Vector2.right * dashSpeed * Time.deltaTime);
+		// if(!anim.GetBool ("ToDash"))
+		transform.Translate (Vector2.right * dashSpeed * Time.deltaTime);
 		if (nowSpeed >= 0 && !walking) nowSpeed -= 0.1;
 		// anim.SetFloat ("Speed", Mathf.Abs (Input.GetAxis ("Horizontal")));
 		anim.SetFloat ("Speed", (float) nowSpeed);
