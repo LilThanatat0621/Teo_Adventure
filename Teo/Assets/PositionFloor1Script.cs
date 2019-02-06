@@ -7,7 +7,6 @@ public class PositionFloor1Script : MonoBehaviour {
     bool show = false;
     Transform ThisPos, PlayerPos;
     double distance;
-    public double posBlock;
     string temp;
     TextMesh textMesh;
     void Start () {
@@ -36,13 +35,13 @@ public class PositionFloor1Script : MonoBehaviour {
         // show=false; 
     }
     void OnTriggerEnter2D (Collider2D other) {
-        Debug.Log("On trigger enter activated!"+other.gameObject.name);
+        // Debug.Log("On trigger enter activated!"+other.gameObject.name);
         if (other.gameObject.name == "Redar")
             show = true;
 
     }
     void OnTriggerStay2D (Collider2D other) {
-        Debug.Log("On trigger stay activated!"+other.gameObject.name);
+        // Debug.Log("On trigger stay activated!"+other.gameObject.name);
         if (other.gameObject.name == "Redar")
             show = true;
 

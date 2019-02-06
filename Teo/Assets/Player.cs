@@ -20,7 +20,7 @@ public class Player : MonoBehaviour {
 	private Physics2D physics2d;
 	private Animator anim;
 
-	public GameLogic control;
+	 GameLogic control;
 	bool walking = false;
 	public GameObject HitArea;
 	public int healthBar = 100;
@@ -28,6 +28,7 @@ public class Player : MonoBehaviour {
 	public double nowSpeed = 0;
 	float dashSpeed = 0;
 	void Start () {
+		control=GameObject.Find ("GameLogic").GetComponent<GameLogic> ();
 		rigidbody2d = gameObject.GetComponent<Rigidbody2D> ();
 		anim = gameObject.GetComponent<Animator> ();
 		aSource = GetComponent<AudioSource>();
