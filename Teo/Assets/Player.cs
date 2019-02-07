@@ -2,7 +2,7 @@
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-	public AudioClip runSound,jumpSound,fireSound,dashSound,crawlSound,deathSound,spawnSound,warpSound;
+	public AudioClip runSound, jumpSound, fireSound, dashSound, crawlSound, deathSound, spawnSound, warpSound;
 	private AudioSource aSource;
 	// AudioSource = source;
 	public float speed = 1f;
@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
 	public float maxSpeed = 10f;
 	public float jumpPower = 20f;
 	public bool grounded;
-	 BoxCollider2D A,B;
+	BoxCollider2D A, B;
 	public float jumpRate = 1f;
 	public float nextJumpPress = 0.0f;
 	public float fireRate = 0.3f;
@@ -20,62 +20,67 @@ public class Player : MonoBehaviour {
 	private Physics2D physics2d;
 	private Animator anim;
 
-	 GameLogic control;
+	GameLogic control;
 	bool walking = false;
 	public GameObject HitArea;
 	public int healthBar = 100;
 	bool dash = false;
 	public double nowSpeed = 0;
 	float dashSpeed = 0;
+	bool live=true;
 	void Start () {
-		control=GameObject.Find ("GameLogic").GetComponent<GameLogic> ();
+		control = GameObject.Find ("GameLogic").GetComponent<GameLogic> ();
 		rigidbody2d = gameObject.GetComponent<Rigidbody2D> ();
 		anim = gameObject.GetComponent<Animator> ();
-		aSource = GetComponent<AudioSource>();
-		BoxCollider2D[] temp=gameObject.GetComponents<BoxCollider2D> ();
-		A=temp[0];
-		B=temp[1];
+		aSource = GetComponent<AudioSource> ();
+		BoxCollider2D[] temp = gameObject.GetComponents<BoxCollider2D> ();
+		A = temp[0];
+		B = temp[1];
 		aSource.clip = spawnSound;
-			if(!aSource.isPlaying){
-				aSource.Play();
-			}
+		if (!aSource.isPlaying) {
+			aSource.Play ();
+		}
 	}
 
 	void Update () {
-		Vector3 NewSizeCollder=new Vector3(this.GetComponent<SpriteRenderer>().bounds.size.x/transform.localScale.x,this.GetComponent<SpriteRenderer>().bounds.size.y/transform.localScale.y,this.GetComponent<SpriteRenderer>().bounds.size.z/transform.localScale.z);
-		A.size=NewSizeCollder;
-		B.size=NewSizeCollder;
+		Vector3 NewSizeCollder = new Vector3 (this.GetComponent<SpriteRenderer> ().bounds.size.x / transform.localScale.x, this.GetComponent<SpriteRenderer> ().bounds.size.y / transform.localScale.y, this.GetComponent<SpriteRenderer> ().bounds.size.z / transform.localScale.z);
+		A.size = NewSizeCollder;
+		B.size = NewSizeCollder;
 		anim.SetBool ("Grounded", true);
 		anim.SetBool ("Jump", false);
-		AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo(0);
-		if(state.IsName("Jump")){
+		anim.SetFloat ("Speed", (float) nowSpeed);
+		anim.SetBool ("Dash", dash);
+		AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo (0);
+		if (state.IsName ("Jump")) {
 			aSource.clip = jumpSound;
-			if(!aSource.isPlaying){
-				aSource.Play();
+			if (!aSource.isPlaying) {
+				aSource.Play ();
 			}
 		}
-		if(state.IsName("Attack")){
+		if (state.IsName ("Attack")) {
 			aSource.clip = fireSound;
-			if(!aSource.isPlaying){
-				aSource.Play();
+			if (!aSource.isPlaying) {
+				aSource.Play ();
 			}
 		}
-			if(state.IsName("Dash")){
+		if (state.IsName ("Dash")) {
 			aSource.clip = dashSound;
-			if(!aSource.isPlaying){
-				aSource.Play();
+			if (!aSource.isPlaying) {
+				aSource.Play ();
 			}
 		}
-			if(state.IsName("Death")){
+		if (state.IsName ("Death")) {
 			aSource.clip = deathSound;
-			if(!aSource.isPlaying){
-				aSource.Play();
+			if (!aSource.isPlaying&&live) {
+				aSource.Play ();
+				live=false;
+				control.isGameOver = true;
 			}
 		}
-			if(state.IsName("Run")){
+		if (state.IsName ("Run")) {
 			aSource.clip = runSound;
-			if(!aSource.isPlaying){
-				aSource.Play();
+			if (!aSource.isPlaying) {
+				aSource.Play ();
 			}
 		}
 		// anim.SetBool ("Attack", false);
@@ -83,10 +88,12 @@ public class Player : MonoBehaviour {
 		// anim.SetFloat ("Speed", Mathf.Abs (Input.GetAxis ("Horizontal")));
 		if (Input.GetAxis ("Horizontal") < -0.1f) {
 			transform.Translate (Vector2.right * speed * Time.deltaTime);
+			anim.SetFloat ("Speed", (float) 1);
 			transform.eulerAngles = new Vector2 (0, 180);
 
 		} else if (Input.GetAxis ("Horizontal") > 0.1f) {
 			transform.Translate (Vector2.right * speed * Time.deltaTime);
+			anim.SetFloat ("Speed", (float) 1);
 			transform.eulerAngles = new Vector2 (0, 0);
 
 		}
@@ -107,7 +114,7 @@ public class Player : MonoBehaviour {
 		}
 
 		if (Input.GetKey (KeyCode.K)) {
-		
+
 			Dash ();
 
 		}
@@ -123,8 +130,8 @@ public class Player : MonoBehaviour {
 		transform.Translate (Vector2.right * dashSpeed * Time.deltaTime);
 		if (nowSpeed >= 0 && !walking) nowSpeed -= 0.1;
 		// anim.SetFloat ("Speed", Mathf.Abs (Input.GetAxis ("Horizontal")));
-		anim.SetFloat ("Speed", (float) nowSpeed);
-		anim.SetBool ("Dash", dash);
+		
+		
 		walking = false;
 		transform.position = new Vector3 (transform.position.x, transform.position.y, 0);
 	}
@@ -156,7 +163,7 @@ public class Player : MonoBehaviour {
 		anim.SetBool ("Attack", false);
 	}
 	public void Walk () {
-	
+
 		walking = true;
 	}
 
@@ -168,11 +175,12 @@ public class Player : MonoBehaviour {
 		anim.SetBool ("Attack", false);
 	}
 	public void Die () {
-		
+
 		anim.SetTrigger ("Death");
 		// RectTransform rectTransform = GetComponent<RectTransform> ();
 		// rectTransform.Rotate (new Vector3 (0, 0, 90));
-		control.isGameOver = true;
+		
+		// StartCoroutine (WaitDeath ());
 	}
 
 	void OnTriggerEnter2D (Collider2D other) {
@@ -198,8 +206,8 @@ public class Player : MonoBehaviour {
 
 	}
 	IEnumerator WaitDeath () {
-		yield return new WaitForSeconds (2);
 		anim.SetTrigger ("Death");
+		yield return new WaitForSeconds (2);
 		// RectTransform rectTransform = GetComponent<RectTransform> ();
 		// rectTransform.Rotate (new Vector3 (0, 0, 90));
 		control.isGameOver = true;

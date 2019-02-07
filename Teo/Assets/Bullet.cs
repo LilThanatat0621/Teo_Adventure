@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Bullet : MonoBehaviour {
 
@@ -12,9 +12,15 @@ public class Bullet : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-		transform.Translate(Vector2.right * speed * Time.deltaTime);
+		transform.Translate (Vector2.right * speed * Time.deltaTime);
 		if (Time.time - startTime >= SecondsUntilDestroy) {
-			Destroy(this.gameObject);
+			Destroy (this.gameObject);
 		}
+	}
+	void OnTriggerEnter2D (Collider2D other) {
+		// Debug.Log("On trigger enter activated!"+other.gameObject.name);
+		if (other.gameObject != this.gameObject)
+			Destroy (this.gameObject);
+
 	}
 }
