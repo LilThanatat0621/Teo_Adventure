@@ -177,6 +177,7 @@ public class Player : MonoBehaviour {
 	public void Die () {
 
 		anim.SetTrigger ("Death");
+		
 		// RectTransform rectTransform = GetComponent<RectTransform> ();
 		// rectTransform.Rotate (new Vector3 (0, 0, 90));
 		
