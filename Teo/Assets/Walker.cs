@@ -21,14 +21,14 @@ public class Walker : MonoBehaviour {
 		ThisPos.gameObject.GetComponent<MeshRenderer> ().sortingOrder = 5;
 	}
 
-	public double getDistance () {
+	public int getDistance () {
 		if (distance <= 0) distance *= -1;
-		return distance * 10;
+		return (int)distance ;
 
 	}
 	void Update () {
 		distance = PlayerPos.position.x - ThisPos.position.x;
-		if (show) textMesh.text = (temp + " = " + (getDistance ()).ToString ("0.00"));
+		if (show) textMesh.text = (temp + " = " + (getDistance ()).ToString ("0"));
 		else textMesh.text = "";
 
 		if (hp <= 0) {

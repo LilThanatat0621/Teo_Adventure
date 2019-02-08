@@ -169,7 +169,7 @@ public abstract class Block : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 		public Block connectedBlock, If, Inside1, Inside2, Next, Variable1, Variable2, Previous;
 		public bool leaveClone = true;
 		public bool isStartBlock = false;
-
+		private AudioSource aSource;
 		public BlockType GetBlockType () {
 		return this.blockType;
 	}
@@ -181,6 +181,7 @@ public abstract class Block : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
 	protected void Start () {
 		// this.GetComponent<Button> ().onClick.AddListener (Run);
+		aSource=gameObject.AddComponent<AudioSource>();
 		this.rectTransform = gameObject.GetComponent<RectTransform> ();
 		this.image = gameObject.GetComponent<Image> ();
 		this.shadow = gameObject.GetComponent<Shadow> ();
@@ -315,6 +316,10 @@ public abstract class Block : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 		}
 	}
 	public void OnBeginDrag (PointerEventData eventData) {
+		aSource.clip=GameObject.Find("SoundBox").GetComponent<SoundBox>().DragSound;
+		if (!aSource.isPlaying) {
+			aSource.Play ();
+		}
 		if (this.Previous != null) this.Previous.Disconect (this);
 		this.Previous = null;
 		if (this.leaveClone == true) {
@@ -345,7 +350,7 @@ public abstract class Block : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 		foreach (Block block in descendingBlocks) {
 			Vector3 previousPosition = block.transform.position;
 			block.transform.SetParent (GameObject.FindWithTag ("Canvas").transform, false);
-			block.transform.position=previousPosition;
+			block.transform.position = previousPosition;
 			block.transform.SetSiblingIndex (block.transform.parent.childCount - 1);
 			block.SetShadowActive (true);
 		}
@@ -354,7 +359,6 @@ public abstract class Block : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
 	Vector3 lastMousePosition = Vector3.zero;
 	public void OnDrag (PointerEventData eventData) {
-
 		// Aplica delta em função do drag
 		if (lastMousePosition == Vector3.zero) {
 			lastMousePosition = Input.mousePosition;
@@ -366,7 +370,10 @@ public abstract class Block : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 	}
 
 	public void OnEndDrag (PointerEventData eventData) {
-
+		aSource.clip=GameObject.Find("SoundBox").GetComponent<SoundBox>().DropSound;
+		if (!aSource.isPlaying) {
+			aSource.Play ();
+		}
 		GameObject codeContentGO = GameObject.FindWithTag ("CodeContent");
 		// if (transform.parent.gameObject.Equals (codeContentGO) == false) {
 		RectTransform rect = codeContentGO.GetComponent<RectTransform> ();

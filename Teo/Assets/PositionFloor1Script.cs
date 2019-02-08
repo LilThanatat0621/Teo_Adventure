@@ -6,7 +6,7 @@ public class PositionFloor1Script : MonoBehaviour {
     // Start is called before the first frame update\
     bool show = false;
     Transform ThisPos, PlayerPos;
-    double distance;
+    int distance;
     string temp;
     TextMesh textMesh;
     void Start () {
@@ -16,22 +16,22 @@ public class PositionFloor1Script : MonoBehaviour {
         PlayerPos = GameObject.FindWithTag ("Player").transform;
         this.gameObject.GetComponent<MeshRenderer> ().sortingOrder = 5;
     }
-    public double getDistance () {
-        distance = PlayerPos.position.x - ThisPos.position.x;
+    public int getDistance () {
+        distance = (int) (PlayerPos.position.x - ThisPos.position.x);
         if (distance <= 0) distance *= -1;
-        return distance * 10;
+        return distance ;
 
     }
-    public double getDistanceY () {
-        double dis = PlayerPos.position.y - ThisPos.position.y;
+    public int getDistanceY () {
+        int dis = (int) (PlayerPos.position.y - ThisPos.position.y);
         if (dis <= 0) dis *= -1;
-        return dis * 10;
+        return dis ;
 
     }
     // Update is called once per frame
     void Update () {
-        
-        if (show) textMesh.text = ("x" + temp + " = " + (getDistance ()).ToString ("0.00") + "\n" + "y" + temp + " = " + (getDistanceY ()).ToString ("0.00"));
+
+        if (show) textMesh.text = ("x" + temp + " = " + (getDistance ()).ToString ("0") + "\n" + "y" + temp + " = " + (getDistanceY ()).ToString ("0"));
         else textMesh.text = "";
         // show=false; 
     }

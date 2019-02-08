@@ -20,16 +20,16 @@ AudioSource audio;
         PlayerPos=player;
          audio= GetComponent<AudioSource>();
     }
-    public double getDistance () {
+    public int getDistance () {
         if (distance <= 0) distance *= -1;
-        return distance * 10;
+        return (int)distance ;
 
     }
 
     // Update is called once per frame
     void Update () {
         distance = PlayerPos.position.x - ThisPos.position.x;
-        if (show) textMesh.text = (temp + " = " + (getDistance ()).ToString ("0.00"));
+        if (show) textMesh.text = (temp + " = " + (getDistance ()).ToString ("0"));
         else textMesh.text = "";
 
         if (player.position.x - transform.position.x >= -0.2) {
