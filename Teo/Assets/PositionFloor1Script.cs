@@ -12,6 +12,11 @@ public class PositionFloor1Script : MonoBehaviour {
     void Start () {
         textMesh = this.gameObject.GetComponent<TextMesh> ();
         temp = textMesh.text;
+        textMesh.font = Resources.Load<Font>("SuperMario256");
+        textMesh.characterSize=0.05f;
+        textMesh.color=Color.red;
+         MeshRenderer rend = gameObject.GetComponentInChildren<MeshRenderer>();
+        rend.material = textMesh.font.material;
         ThisPos = this.gameObject.GetComponent<Transform> ();
         PlayerPos = GameObject.FindWithTag ("Player").transform;
         this.gameObject.GetComponent<MeshRenderer> ().sortingOrder = 5;

@@ -137,8 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27053f31dd7114b0aa7af3c2d5608a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSound: {fileID: 8300000, guid: 5a7f6603230404bc9bfedf66e2c090e6, type: 3}
-  jumpSound: {fileID: 0}
+  runSound: {fileID: 8300000, guid: 7b660dbfb0dec459c9b146d30283f33e, type: 3}
+  jumpSound: {fileID: 8300000, guid: 4c454df363f124bf1ab683aa6861856c, type: 3}
   fireSound: {fileID: 8300000, guid: 0f11602292ac7481eac365de12fc1ae6, type: 3}
   dashSound: {fileID: 8300000, guid: df538c99fd34744ccb3287220451a721, type: 3}
   crawlSound: {fileID: 8300000, guid: f2ab4e6b5ceb549c6b7a5f84677a4b5b, type: 3}
@@ -153,7 +153,6 @@ MonoBehaviour:
   jumpRate: 1
   nextJumpPress: 0
   fireRate: 0.3
-  control: {fileID: 0}
   HitArea: {fileID: 448240145620287016, guid: 327010c6f9734407abc4d603150d6fdf, type: 3}
   healthBar: 100
   nowSpeed: 0
