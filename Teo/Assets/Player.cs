@@ -9,12 +9,15 @@ public class Player : MonoBehaviour {
 	public float jumpSpeed = 9f;
 	public float maxSpeed = 10f;
 	public float jumpPower = 20f;
-	public bool grounded;
+	
 	BoxCollider2D A, B;
 	public float jumpRate = 1f;
 	public float nextJumpPress = 0.0f;
 	public float fireRate = 0.3f;
 	private float nextFire = 0.0f;
+
+	public Transform GroundCheck1; 
+ 	public LayerMask groundLayer; 
 
 	private Rigidbody2D rigidbody2d;
 	private Physics2D physics2d;
@@ -45,13 +48,13 @@ public class Player : MonoBehaviour {
 	void Update () {
 		Vector3 NewSizeCollder = new Vector3 (this.GetComponent<SpriteRenderer> ().bounds.size.x / transform.localScale.x, this.GetComponent<SpriteRenderer> ().bounds.size.y / transform.localScale.y, this.GetComponent<SpriteRenderer> ().bounds.size.z / transform.localScale.z);
 		A.size = NewSizeCollder;
-		B.size = NewSizeCollder;
-		anim.SetBool ("Grounded", true);
+		// B.size = NewSizeCollder;
+		// anim.SetBool ("Grounded", false);
 		anim.SetBool ("Jump", false);
 		anim.SetFloat ("Speed", (float) nowSpeed);
 		anim.SetBool ("Dash", dash);
 		AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo (0);
-	
+		
 		if (state.IsName ("Jump")) {
 			aSource.clip = jumpSound;
 			if (!aSource.isPlaying) {
@@ -102,9 +105,7 @@ public class Player : MonoBehaviour {
 			transform.Translate (Vector2.right * speed * Time.deltaTime);
 			transform.eulerAngles = new Vector2 (0, 0);
 		}
-		// if (){
-		// 	anim.SetBool ("Grounded", false);
-		// }
+		
 		if (walking && nowSpeed <= 1) {
 
 			nowSpeed += 0.2;
@@ -189,6 +190,8 @@ public class Player : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D (Collider2D other) {
+		// if (other.gameObject.name == "Redar"){
+		// 	anim.SetBool("Grounded",true);
 		if (other.gameObject.name == "coin(Clone)") {
 			//+Health,score
 			Debug.Log ("coin");
@@ -210,6 +213,16 @@ public class Player : MonoBehaviour {
 		}
 
 	}
+	
+    // void OnTriggerExit2D (Collider2D other) {
+ 	
+	//  	if (other.gameObject.name == "Redar"){
+	//   anim.SetBool("Grounded",false);
+	// 	 }
+
+    // }
+
+
 	IEnumerator WaitDeath () {
 		anim.SetTrigger ("Death");
 		yield return new WaitForSeconds (2);
