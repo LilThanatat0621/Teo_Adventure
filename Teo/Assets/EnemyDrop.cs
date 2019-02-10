@@ -11,18 +11,27 @@ public class EnemyDrop : MonoBehaviour {
     Vector3 walkAmount;
     public string temp;
     public TextMesh textMesh;
-AudioSource audio;
+    GameObject Child;
+    AudioSource audio;
     void Start () {
+        GameObject Rhombus = Resources.Load<GameObject> ("Rhombus");
+        Child = Instantiate (Rhombus) as GameObject;
+        Child.transform.parent = this.transform;
         player = GameObject.FindWithTag ("Player").transform;
         temp = textMesh.text;
+        textMesh.font = Resources.Load<Font> ("SuperMario256");
+        textMesh.characterSize = 0.3f;
+        textMesh.color = Color.red;
+        MeshRenderer rend = gameObject.GetComponentInChildren<MeshRenderer> ();
+        rend.material = textMesh.font.material;
         // ThisPos = this.gameObject.GetComponent<Transform> ();
         ThisPos.gameObject.GetComponent<MeshRenderer> ().sortingOrder = 5;
-        PlayerPos=player;
-         audio= GetComponent<AudioSource>();
+        PlayerPos = player;
+        audio = GetComponent<AudioSource> ();
     }
     public int getDistance () {
         if (distance <= 0) distance *= -1;
-        return (int)distance ;
+        return (int) (distance * 10);
 
     }
 
@@ -31,10 +40,10 @@ AudioSource audio;
         distance = PlayerPos.position.x - ThisPos.position.x;
         if (show) textMesh.text = (temp + " = " + (getDistance ()).ToString ("0"));
         else textMesh.text = "";
-
+        Child.SetActive (show);
         if (player.position.x - transform.position.x >= -0.2) {
             this.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
-            if(audio!=null){audio.Play();audio=null;}
+            if (audio != null) { audio.Play (); audio = null; }
         }
     }
 
@@ -55,7 +64,6 @@ AudioSource audio;
             other.gameObject.GetComponent<Player> ().Die ();
 
         }
-        
 
     }
 }

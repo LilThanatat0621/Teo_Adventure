@@ -13,30 +13,38 @@ public class Walker : MonoBehaviour {
 	public string temp;
 	public TextMesh textMesh;
 	public int hp = 5;
-
+	GameObject Child;
 	void Start () {
+		GameObject Rhombus = Resources.Load<GameObject> ("Rhombus");
+		Child = Instantiate (Rhombus) as GameObject;
+		Child.transform.parent = textMesh.gameObject.transform;
 		temp = textMesh.text;
 		PlayerPos = GameObject.FindWithTag ("Player").transform;
+		textMesh.font = Resources.Load<Font> ("SuperMario256");
+		textMesh.characterSize = 0.3f;
+		textMesh.color = Color.red;
+		MeshRenderer rend = gameObject.GetComponentInChildren<MeshRenderer> ();
+		rend.material = textMesh.font.material;
 		// ThisPos = this.gameObject.GetComponent<Transform> ();
 		ThisPos.gameObject.GetComponent<MeshRenderer> ().sortingOrder = 5;
 	}
 
 	public int getDistance () {
 		if (distance <= 0) distance *= -1;
-		return (int)distance ;
+		return (int) (distance * 10);
 
 	}
 	void Update () {
 		distance = PlayerPos.position.x - ThisPos.position.x;
 		if (show) textMesh.text = (temp + " = " + (getDistance ()).ToString ("0"));
 		else textMesh.text = "";
-
+		Child.SetActive (show);
 		if (hp <= 0) {
-			distance=10000;
-			transform.position = new Vector3 (transform.position.x+1000, transform.position.y, 0);
+			distance = 10000;
+			transform.position = new Vector3 (transform.position.x + 1000, transform.position.y, 0);
 			Destroy (this.gameObject);
-			distance=10000;
-			transform.position = new Vector3 (transform.position.x+1000, transform.position.y, 0);
+			distance = 10000;
+			transform.position = new Vector3 (transform.position.x + 1000, transform.position.y, 0);
 		}
 		walkAmount.x = walkingDirection * walkSpeed * Time.deltaTime;
 		walkTime += Time.deltaTime;

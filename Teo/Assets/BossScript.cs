@@ -13,6 +13,7 @@ public class BossScript : MonoBehaviour {
     public int live = 5;
     bool isDie = false;
     void Start () {
+        fireRate = 10;
         rigidbody2d = gameObject.GetComponent<Rigidbody2D> ();
     }
 
@@ -26,11 +27,11 @@ public class BossScript : MonoBehaviour {
             if (!isDie) Die ();
             isDie = true;
         }
-        
+
     }
     void Die () {
         rigidbody2d.AddForce ((Vector2.up * jumpPower) * jumpSpeed * 3);
-        this.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+        this.gameObject.GetComponent<BoxCollider2D> ().isTrigger = true;
     }
     public void Fire () {
         temp++;
@@ -43,15 +44,15 @@ public class BossScript : MonoBehaviour {
     void OnTriggerEnter2D (Collider2D other) {
         if (other.gameObject.tag == "bullet") {
             live--;
-            this.gameObject.GetComponent<SpriteRenderer>().color=Color.red;
+            this.gameObject.GetComponent<SpriteRenderer> ().color = Color.red;
             StartCoroutine (WaitRestore ());
         }
     }
 
     IEnumerator WaitRestore () {
-		yield return new WaitForSeconds (0.1f);
-		this.gameObject.GetComponent<SpriteRenderer>().color=Color.white;
-	}
+        yield return new WaitForSeconds (0.1f);
+        this.gameObject.GetComponent<SpriteRenderer> ().color = Color.white;
+    }
     void OnTriggerExit2D (Collider2D other) {
         if (other.gameObject.name == "danger") {
             Destroy (this.gameObject);

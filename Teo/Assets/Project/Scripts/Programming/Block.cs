@@ -181,7 +181,7 @@ public abstract class Block : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
 	protected void Start () {
 		// this.GetComponent<Button> ().onClick.AddListener (Run);
-		aSource=gameObject.AddComponent<AudioSource>();
+		aSource = gameObject.AddComponent<AudioSource> ();
 		this.rectTransform = gameObject.GetComponent<RectTransform> ();
 		this.image = gameObject.GetComponent<Image> ();
 		this.shadow = gameObject.GetComponent<Shadow> ();
@@ -316,7 +316,7 @@ public abstract class Block : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 		}
 	}
 	public void OnBeginDrag (PointerEventData eventData) {
-		aSource.clip=GameObject.Find("SoundBox").GetComponent<SoundBox>().DragSound;
+		aSource.clip = GameObject.Find ("SoundBox").GetComponent<SoundBox> ().DragSound;
 		if (!aSource.isPlaying) {
 			aSource.Play ();
 		}
@@ -370,7 +370,7 @@ public abstract class Block : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 	}
 
 	public void OnEndDrag (PointerEventData eventData) {
-		aSource.clip=GameObject.Find("SoundBox").GetComponent<SoundBox>().DropSound;
+		aSource.clip = GameObject.Find ("SoundBox").GetComponent<SoundBox> ().DropSound;
 		if (!aSource.isPlaying) {
 			aSource.Play ();
 		}
