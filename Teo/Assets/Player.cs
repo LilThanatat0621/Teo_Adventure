@@ -51,6 +51,7 @@ public class Player : MonoBehaviour {
 		anim.SetFloat ("Speed", (float) nowSpeed);
 		anim.SetBool ("Dash", dash);
 		AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo (0);
+	
 		if (state.IsName ("Jump")) {
 			aSource.clip = jumpSound;
 			if (!aSource.isPlaying) {
@@ -101,6 +102,9 @@ public class Player : MonoBehaviour {
 			transform.Translate (Vector2.right * speed * Time.deltaTime);
 			transform.eulerAngles = new Vector2 (0, 0);
 		}
+		// if (){
+		// 	anim.SetBool ("Grounded", false);
+		// }
 		if (walking && nowSpeed <= 1) {
 
 			nowSpeed += 0.2;
