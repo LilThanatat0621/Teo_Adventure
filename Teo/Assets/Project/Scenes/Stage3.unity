@@ -442,6 +442,7 @@ GameObject:
   - component: {fileID: 157438756}
   - component: {fileID: 157438755}
   - component: {fileID: 157438754}
+  - component: {fileID: 157438758}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Canvas
@@ -533,6 +534,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &157438758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157438753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa91ce60212998f498828675e144b779, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &190226061
 GameObject:
   m_ObjectHideFlags: 0
@@ -4954,6 +4967,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DragSound: {fileID: 8300000, guid: 6fd42c7a854ae4c7f84a3283e1392439, type: 3}
   DropSound: {fileID: 8300000, guid: 7714cb311f9984a76bd3d362d45de218, type: 3}
+  Command: {fileID: 0}
 --- !u!4 &967363394
 Transform:
   m_ObjectHideFlags: 0
@@ -8350,10 +8364,13 @@ MonoBehaviour:
   jumpSpeed: 9
   maxSpeed: 10
   jumpPower: 20
-  grounded: 0
   jumpRate: 1
   nextJumpPress: 0
   fireRate: 0.3
+  GroundCheck1: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
   HitArea: {fileID: 448240145620287016, guid: 327010c6f9734407abc4d603150d6fdf, type: 3}
   healthBar: 100
   nowSpeed: 0
