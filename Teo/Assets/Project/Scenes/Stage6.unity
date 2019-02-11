@@ -4447,7 +4447,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.3696818, y: 0.000060963797}
+  m_AnchoredPosition: {x: -0.000015378655, y: 0.000060963797}
   m_SizeDelta: {x: 6.1, y: 860.6}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &741184099
@@ -6013,6 +6013,11 @@ PrefabInstance:
       propertyPath: runSound
       value: 
       objectReference: {fileID: 8300000, guid: 7b660dbfb0dec459c9b146d30283f33e, type: 3}
+    - target: {fileID: 5739858878735229482, guid: e07c7c7b6d58445caac99f3037b871a5,
+        type: 3}
+      propertyPath: groundLayers.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 1911236621139704583, guid: e07c7c7b6d58445caac99f3037b871a5,
         type: 3}
       propertyPath: m_audioClip
@@ -7311,6 +7316,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: dust witg grass 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6954542184429830902, guid: 89f57cf830b7d42c39b340c4ed333ece,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6954542184429830906, guid: 89f57cf830b7d42c39b340c4ed333ece,
         type: 3}
@@ -11899,6 +11909,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: dust witg grass
       objectReference: {fileID: 0}
+    - target: {fileID: 6954542184429830902, guid: 89f57cf830b7d42c39b340c4ed333ece,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6954542184429830906, guid: 89f57cf830b7d42c39b340c4ed333ece,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11952,6 +11967,11 @@ PrefabInstance:
     - target: {fileID: 6954542184429830906, guid: 89f57cf830b7d42c39b340c4ed333ece,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6954542184429830901, guid: 89f57cf830b7d42c39b340c4ed333ece,
+        type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
