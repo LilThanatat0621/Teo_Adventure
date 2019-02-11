@@ -12,11 +12,13 @@ public class EnemyDrop : MonoBehaviour {
     public string temp;
     public TextMesh textMesh;
     GameObject Child;
+    public double hangY;
     AudioSource audio;
     void Start () {
         GameObject Rhombus = Resources.Load<GameObject> ("Rhombus");
         Child = Instantiate (Rhombus) as GameObject;
-        Child.transform.parent = this.transform;
+        Child.transform.SetParent (textMesh.gameObject.transform);
+        hangY = Child.GetComponent<SpriteRenderer> ().sprite.bounds.size.y/2;
         player = GameObject.FindWithTag ("Player").transform;
         temp = textMesh.text;
         textMesh.font = Resources.Load<Font> ("SuperMario256");
@@ -26,12 +28,21 @@ public class EnemyDrop : MonoBehaviour {
         rend.material = textMesh.font.material;
         // ThisPos = this.gameObject.GetComponent<Transform> ();
         ThisPos.gameObject.GetComponent<MeshRenderer> ().sortingOrder = 5;
+        ThisPos.gameObject.transform.localPosition = new Vector2 (ThisPos.gameObject.transform.localPosition.x, ThisPos.gameObject.transform.localPosition.y + (float) hangY);
         PlayerPos = player;
         audio = GetComponent<AudioSource> ();
     }
     public int getDistance () {
         if (distance <= 0) distance *= -1;
         return (int) (distance * 10);
+
+    }
+    public int getDistanceY () {
+        double dis = (PlayerPos.position.y - ThisPos.position.y);
+        if (dis <= 0) dis *= -1;
+        dis -= hangY;
+        if (dis <= 0) dis *= -1;
+        return (int) (dis * 10);
 
     }
 

@@ -10,11 +10,13 @@ public class PositionFloor1Script : MonoBehaviour {
     string temp;
     TextMesh textMesh;
     GameObject Child;
+    public double hangY;
     void Start () {
+
         GameObject Rhombus = Resources.Load<GameObject> ("Rhombus");
         Child = Instantiate (Rhombus) as GameObject;
-        Child.transform.parent = this.transform;
-
+        Child.transform.SetParent (this.transform);
+        hangY = Child.GetComponent<SpriteRenderer> ().sprite.bounds.size.y/10;
         textMesh = this.gameObject.GetComponent<TextMesh> ();
         temp = textMesh.text;
         textMesh.font = Resources.Load<Font> ("SuperMario256");
@@ -25,17 +27,20 @@ public class PositionFloor1Script : MonoBehaviour {
         ThisPos = this.gameObject.GetComponent<Transform> ();
         PlayerPos = GameObject.FindWithTag ("Player").transform;
         this.gameObject.GetComponent<MeshRenderer> ().sortingOrder = 5;
+        transform.localPosition = new Vector2 (transform.localPosition.x, transform.localPosition.y + (float) hangY);
     }
     public int getDistance () {
-        distance =  (PlayerPos.position.x - ThisPos.position.x);
+        distance = (PlayerPos.position.x - ThisPos.position.x);
         if (distance <= 0) distance *= -1;
-        return (int)(distance * 10);
+        return (int) (distance * 10);
 
     }
     public int getDistanceY () {
         double dis = (PlayerPos.position.y - ThisPos.position.y);
         if (dis <= 0) dis *= -1;
-        return (int)(dis * 10);
+        dis -= hangY;
+        if (dis <= 0) dis *= -1;
+        return (int) (dis * 10);
 
     }
     // Update is called once per frame

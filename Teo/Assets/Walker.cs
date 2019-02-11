@@ -17,7 +17,7 @@ public class Walker : MonoBehaviour {
 	void Start () {
 		GameObject Rhombus = Resources.Load<GameObject> ("Rhombus");
 		Child = Instantiate (Rhombus) as GameObject;
-		Child.transform.parent = textMesh.gameObject.transform;
+		Child.transform.SetParent(textMesh.gameObject.transform);
 		temp = textMesh.text;
 		PlayerPos = GameObject.FindWithTag ("Player").transform;
 		textMesh.font = Resources.Load<Font> ("SuperMario256");
@@ -55,14 +55,14 @@ public class Walker : MonoBehaviour {
 		}
 		if (!facing) {
 			transform.eulerAngles = new Vector2 (0, 180);
-			ThisPos.eulerAngles = new Vector2 (0, 180);
+			
 
 		}
 		if (facing) {
 			transform.eulerAngles = new Vector2 (0, 0);
-			ThisPos.eulerAngles = new Vector2 (0, 180);
+			
 		}
-
+		ThisPos.eulerAngles = new Vector2 (0, 180);
 		//  else if (walkingDirection < 0.0f && transform.position.x <= wallLeft)
 		// 	 walkingDirection = 1.0f;
 
