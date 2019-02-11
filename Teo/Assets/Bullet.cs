@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour {
 	}
 	void OnTriggerEnter2D (Collider2D other) {
 		// Debug.Log("On trigger enter activated!"+other.gameObject.name);
-		if (other.gameObject != this.gameObject&&other.gameObject.name!="Redar")
+		if (other.gameObject != this.gameObject&&other.gameObject.name!="Redar"&&other.gameObject.name!="Model")
 			Destroy (this.gameObject);
 
 	}

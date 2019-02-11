@@ -16,8 +16,6 @@ public class Player : MonoBehaviour {
 	public float fireRate = 0.3f;
 	private float nextFire = 0.0f;
 
- 	
-
 	private Rigidbody2D rigidbody2d;
 	private Physics2D physics2d;
 	private Animator anim;
@@ -29,7 +27,7 @@ public class Player : MonoBehaviour {
 	bool dash = false;
 	public double nowSpeed = 0;
 	float dashSpeed = 0;
-	bool live=true;
+	bool live = true;
 	void Start () {
 		control = GameObject.Find ("GameLogic").GetComponent<GameLogic> ();
 		rigidbody2d = gameObject.GetComponent<Rigidbody2D> ();
@@ -49,12 +47,15 @@ public class Player : MonoBehaviour {
 		A.size = NewSizeCollder;
 		// B.size = NewSizeCollder;
 		// anim.SetBool ("Grounded", false);
-		anim.SetBool ("Jump", false);
+
 		anim.SetFloat ("Speed", (float) nowSpeed);
 		anim.SetBool ("Dash", dash);
 		AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo (0);
-		IsGround = (rigidbody2d.velocity.y<0);
-		 anim.SetBool("Grounded",!IsGround);
+		IsGround = (rigidbody2d.velocity.y < -3);
+		anim.SetBool ("Grounded", !IsGround);
+		if (anim.GetBool ("Jump")) {
+			anim.SetBool ("Jump", !IsGround);
+		}
 		if (state.IsName ("Jump")) {
 			aSource.clip = jumpSound;
 			if (!aSource.isPlaying) {
@@ -75,9 +76,9 @@ public class Player : MonoBehaviour {
 		}
 		if (state.IsName ("Death")) {
 			aSource.clip = deathSound;
-			if (!aSource.isPlaying&&live) {
+			if (!aSource.isPlaying && live) {
 				aSource.Play ();
-				live=false;
+				live = false;
 				control.isGameOver = true;
 			}
 		}
@@ -105,7 +106,7 @@ public class Player : MonoBehaviour {
 			transform.Translate (Vector2.right * speed * Time.deltaTime);
 			transform.eulerAngles = new Vector2 (0, 0);
 		}
-		
+
 		if (walking && nowSpeed <= 1) {
 
 			nowSpeed += 0.2;
@@ -135,8 +136,7 @@ public class Player : MonoBehaviour {
 		transform.Translate (Vector2.right * dashSpeed * Time.deltaTime);
 		if (nowSpeed >= 0 && !walking) nowSpeed -= 0.1;
 		// anim.SetFloat ("Speed", Mathf.Abs (Input.GetAxis ("Horizontal")));
-		
-		
+
 		walking = false;
 		transform.position = new Vector3 (transform.position.x, transform.position.y, 0);
 	}
@@ -148,8 +148,7 @@ public class Player : MonoBehaviour {
 		}
 
 	}
-	public void Falling(){
-		
+	public void Falling () {
 
 	}
 	public void Dash () {
@@ -187,10 +186,10 @@ public class Player : MonoBehaviour {
 	public void Die () {
 
 		anim.SetTrigger ("Death");
-		
+
 		// RectTransform rectTransform = GetComponent<RectTransform> ();
 		// rectTransform.Rotate (new Vector3 (0, 0, 90));
-		
+
 		// StartCoroutine (WaitDeath ());
 	}
 
@@ -218,15 +217,14 @@ public class Player : MonoBehaviour {
 		}
 
 	}
-	
-    // void OnTriggerExit2D (Collider2D other) {
- 	
+
+	// void OnTriggerExit2D (Collider2D other) {
+
 	//  	if (other.gameObject.name == "Redar"){
 	//   anim.SetBool("Grounded",false);
 	// 	 }
 
-    // }
-
+	// }
 
 	IEnumerator WaitDeath () {
 		anim.SetTrigger ("Death");
