@@ -490,10 +490,13 @@ MonoBehaviour:
   jumpSpeed: 9
   maxSpeed: 10
   jumpPower: 20
-  grounded: 0
+  IsGround: 0
   jumpRate: 1
   nextJumpPress: 0
   fireRate: 0.3
+  groundLayers:
+    serializedVersion: 2
+    m_Bits: 0
   HitArea: {fileID: 448240145620287016, guid: 327010c6f9734407abc4d603150d6fdf, type: 3}
   healthBar: 100
   nowSpeed: 0
@@ -1538,7 +1541,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 597964523}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.99999994
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4431,7 +4434,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.3696818, y: 0.000060963797}
+  m_AnchoredPosition: {x: -0.000015378655, y: 0.000060963797}
   m_SizeDelta: {x: 6.1, y: 860.6}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &741184099
@@ -4948,10 +4951,13 @@ MonoBehaviour:
   jumpSpeed: 9
   maxSpeed: 10
   jumpPower: 20
-  grounded: 0
+  IsGround: 0
   jumpRate: 1
   nextJumpPress: 0
   fireRate: 0.3
+  groundLayers:
+    serializedVersion: 2
+    m_Bits: 0
   HitArea: {fileID: 448240145620287016, guid: 327010c6f9734407abc4d603150d6fdf, type: 3}
   healthBar: 100
   nowSpeed: 0
@@ -5678,7 +5684,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 392809369}
   m_HandleRect: {fileID: 392809368}
   m_Direction: 0
-  m_Value: 0.2245316
+  m_Value: 0.0000025014383
   m_Size: 0.9776368
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5994,6 +6000,11 @@ PrefabInstance:
       propertyPath: runSound
       value: 
       objectReference: {fileID: 8300000, guid: 7b660dbfb0dec459c9b146d30283f33e, type: 3}
+    - target: {fileID: 5739858878735229482, guid: e07c7c7b6d58445caac99f3037b871a5,
+        type: 3}
+      propertyPath: groundLayers.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 1911236621139704583, guid: e07c7c7b6d58445caac99f3037b871a5,
         type: 3}
       propertyPath: m_audioClip
@@ -7293,6 +7304,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: dust witg grass 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6954542184429830902, guid: 89f57cf830b7d42c39b340c4ed333ece,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6954542184429830906, guid: 89f57cf830b7d42c39b340c4ed333ece,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8250,7 +8266,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0000048451193, y: 0.00006571725}
+  m_AnchoredPosition: {x: -0.000008479668, y: 0.00006571725}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1525291117
@@ -11464,7 +11480,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00002290199, y: 0}
+  m_AnchoredPosition: {x: 0.000040526425, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &2067329329
@@ -11875,6 +11891,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: dust witg grass
       objectReference: {fileID: 0}
+    - target: {fileID: 6954542184429830902, guid: 89f57cf830b7d42c39b340c4ed333ece,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6954542184429830906, guid: 89f57cf830b7d42c39b340c4ed333ece,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11928,6 +11949,11 @@ PrefabInstance:
     - target: {fileID: 6954542184429830906, guid: 89f57cf830b7d42c39b340c4ed333ece,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6954542184429830901, guid: 89f57cf830b7d42c39b340c4ed333ece,
+        type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

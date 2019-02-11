@@ -9,20 +9,19 @@ public class Player : MonoBehaviour {
 	public float jumpSpeed = 9f;
 	public float maxSpeed = 10f;
 	public float jumpPower = 20f;
-	
+	public bool IsGround;
 	BoxCollider2D A, B;
 	public float jumpRate = 1f;
 	public float nextJumpPress = 0.0f;
 	public float fireRate = 0.3f;
 	private float nextFire = 0.0f;
 
-	public Transform GroundCheck1; 
- 	public LayerMask groundLayer; 
+ 	
 
 	private Rigidbody2D rigidbody2d;
 	private Physics2D physics2d;
 	private Animator anim;
-
+	public LayerMask groundLayers;
 	GameLogic control;
 	bool walking = false;
 	public GameObject HitArea;
@@ -54,7 +53,8 @@ public class Player : MonoBehaviour {
 		anim.SetFloat ("Speed", (float) nowSpeed);
 		anim.SetBool ("Dash", dash);
 		AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo (0);
-		
+		IsGround = (rigidbody2d.velocity.y<0);
+		 anim.SetBool("Grounded",!IsGround);
 		if (state.IsName ("Jump")) {
 			aSource.clip = jumpSound;
 			if (!aSource.isPlaying) {
@@ -146,6 +146,11 @@ public class Player : MonoBehaviour {
 			nextJumpPress = Time.time + jumpRate;
 			rigidbody2d.AddForce ((Vector2.up * jumpPower) * jumpSpeed);
 		}
+
+	}
+	public void Falling(){
+		
+
 	}
 	public void Dash () {
 		// transform.Translate(Vector2.right * speed );
