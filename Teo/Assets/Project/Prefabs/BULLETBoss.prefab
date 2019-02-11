@@ -8,10 +8,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 470877239735539213}
+  - component: {fileID: 2260294455164563260}
   - component: {fileID: 791797751874870741}
   - component: {fileID: 6667498824128909930}
-  - component: {fileID: 8271092514211825237}
+  - component: {fileID: 6873502678570247141}
   m_Layer: 0
   m_Name: BULLETBoss
   m_TagString: Danger
@@ -19,21 +19,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &470877239735539213
-Transform:
+--- !u!224 &2260294455164563260
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 448240145620287016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.529, y: -0.561, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.6776314, y: 1.4188033, z: 1}
   m_Children:
   - {fileID: 5863601713185584734}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -2.491, y: 0.087}
+  m_SizeDelta: {x: 0.4, y: 0.3}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &791797751874870741
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -75,8 +80,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1.52, y: 1.17}
+  m_DrawMode: 1
+  m_Size: {x: 0.4, y: 0.3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -96,8 +101,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   SecondsUntilDestroy: 2
---- !u!60 &8271092514211825237
-PolygonCollider2D:
+--- !u!58 &6873502678570247141
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -106,46 +111,12 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.55, y: 1.66}
-    newSize: {x: 1.52, y: 1.17}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 1.143574, y: 0.07849564}
-      - {x: 0.2528709, y: 0.7979097}
-      - {x: 0.16722637, y: 0.7979097}
-      - {x: 0.13296856, y: 0.71226513}
-      - {x: 0.28712872, y: 0.5067183}
-      - {x: 0.20148419, y: 0.38681594}
-      - {x: -0.5008009, y: 0.38681594}
-      - {x: -0.56931657, y: 0.36968702}
-      - {x: -0.48367202, y: 0.2497847}
-      - {x: -1.1345705, y: 0.19839796}
-      - {x: -1.1516993, y: 0.16414016}
-      - {x: -1.1516993, y: 0.07849564}
-      - {x: -0.9804103, y: -0.0071488926}
-      - {x: -0.5008009, y: -0.12705123}
-      - {x: -0.5008009, y: -0.22982466}
-      - {x: -0.4665431, y: -0.24695356}
-      - {x: 0.21861309, y: -0.40111372}
-      - {x: -0.072578296, y: -0.6923051}
-      - {x: -0.072578296, y: -0.76082075}
-      - {x: -0.055449393, y: -0.7950785}
-      - {x: -0.0040626787, y: -0.7950785}
-      - {x: 0.081581846, y: -0.77794963}
-      - {x: 0.11583966, y: -0.7436918}
-      - {x: 1.2977341, y: -0.16130903}
-      - {x: 1.2977341, y: -0.07566451}
+  serializedVersion: 2
+  m_Radius: 0.08
 --- !u!1 &1103042936238671111
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,11 +144,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1103042936238671111}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 470877239735539213}
+  m_Father: {fileID: 2260294455164563260}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!23 &9148627865386106294
@@ -251,6 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7d9b059429556340894d81aa3cfa8e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hangY: 0
 --- !u!61 &7972569317778766129
 BoxCollider2D:
   m_ObjectHideFlags: 0
