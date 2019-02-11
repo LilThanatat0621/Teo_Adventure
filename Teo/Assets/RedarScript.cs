@@ -46,6 +46,11 @@ public class RedarScript : MonoBehaviour {
         RedarOn = !RedarOn;
     }
     public void Restart () {
+        GameObject[] objs = GameObject.FindGameObjectsWithTag ("Forever");
+        foreach (var item in objs)
+        {
+            item.GetComponent<Forever>().Stop();
+        }
         Application.LoadLevel (Application.loadedLevel);
     }
 }

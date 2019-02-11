@@ -13,6 +13,7 @@ TagManager:
   - bullet
   - Danger
   - DangerBullet
+  - Forever
   layers:
   - Default
   - TransparentFX
