@@ -18,7 +18,7 @@ public class Forever : Block {
 	}
 
 	public void Stop () {
-
+		
 		canRun = false;
 	}
 
@@ -33,7 +33,7 @@ public class Forever : Block {
 	}
 
 	override protected void CreateConnections () {
-		this.gameObject.tag="Forever";
+		isForeverBlock=true;
 		this.blockType = BlockType.BlockTypeInscrution;
 		Connection previousConnection = new Connection (this, new Vector2 (10, 90), Connection.ConnectionType.Previous);
 		Connection nextConnection = new Connection (this, new Vector2 (10, 0), Connection.ConnectionType.Next);

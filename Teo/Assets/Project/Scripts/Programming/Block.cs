@@ -168,7 +168,7 @@ public abstract class Block : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 		protected Shadow shadow;
 		public Block connectedBlock, If, Inside1, Inside2, Next, Variable1, Variable2, Previous;
 		public bool leaveClone = true;
-		public bool isStartBlock = false;
+		public bool isStartBlock = false,isForeverBlock=false;
 		private AudioSource aSource;
 		public BlockType GetBlockType () {
 		return this.blockType;

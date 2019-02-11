@@ -24,7 +24,7 @@ public class RedarScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if(Player==null)Player = GameObject.FindWithTag ("Player").transform;
+        if (Player == null) Player = GameObject.FindWithTag ("Player").transform;
         if (RedarOn && Redar.localScale.x <= maxScale) {
             Redar.localPosition = Player.localPosition;
             Redar.localScale = Redar.localScale + new Vector3 (Mathf.Max (Redar.localScale.x / 10, 1), Mathf.Max (Redar.localScale.x / 10, 1));
@@ -36,7 +36,7 @@ public class RedarScript : MonoBehaviour {
         }
         if (Redar.localScale.x <= 0) {
             Redar.localScale = Vector3.zero;
-            
+
             // this.GetComponent<CircleCollider2D> ().radius=Redar.localScale.x/1600;
         }
         this.GetComponent<CircleCollider2D> ().radius = this.GetComponent<SpriteRenderer> ().sprite.bounds.extents.x;
@@ -46,10 +46,12 @@ public class RedarScript : MonoBehaviour {
         RedarOn = !RedarOn;
     }
     public void Restart () {
-        GameObject[] objs = GameObject.FindGameObjectsWithTag ("Forever");
-        foreach (var item in objs)
-        {
-            item.GetComponent<Forever>().Stop();
+        Forever[] allChildren = GameObject.FindWithTag("CodeContent").transform.GetComponentsInChildren<Forever>();
+        // Code.GetComponent<BeepBlock>().Run();
+        // Debug.Log(Code);
+        foreach (Forever child in allChildren) {
+            // Debug.Log (child.gameObject);
+            if(child.isForeverBlock)child.Stop();
         }
         Application.LoadLevel (Application.loadedLevel);
     }

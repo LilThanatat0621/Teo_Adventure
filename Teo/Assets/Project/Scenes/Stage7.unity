@@ -521,6 +521,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
 --- !u!114 &129465215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1468,6 +1469,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
 --- !u!114 &251060803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1704,6 +1706,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
   var: 
   get: {fileID: 0}
   get2: {fileID: 0}
@@ -2373,6 +2376,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
 --- !u!114 &405068110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2753,6 +2757,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
 --- !u!114 &437989361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2925,7 +2930,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1867045898}
   m_HandleRect: {fileID: 1867045897}
   m_Direction: 0
-  m_Value: 0.551272
+  m_Value: 0.59307104
   m_Size: 0.9776368
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -4094,8 +4099,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 126357313}
   m_HandleRect: {fileID: 126357312}
   m_Direction: 0
-  m_Value: 1
-  m_Size: 0.9999998
+  m_Value: 0
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5252,6 +5257,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
   var: 
   get: {fileID: 0}
   get2: {fileID: 0}
@@ -5362,6 +5368,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
   getx1: {fileID: 0}
 --- !u!114 &1107111151
 MonoBehaviour:
@@ -5700,7 +5707,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00000034908186, y: 0.000093709765}
+  m_AnchoredPosition: {x: 0.0000044407066, y: 0.000093709765}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1197431104
@@ -5859,6 +5866,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
 --- !u!114 &1205730269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6000,7 +6008,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -3.362736, y: 0}
+  m_AnchoredPosition: {x: -3.6177056, y: 0}
   m_SizeDelta: {x: 6.1, y: 1014.6}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1217394650
@@ -7412,6 +7420,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
 --- !u!114 &1519955713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7670,6 +7679,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
   getx1: {fileID: 0}
 --- !u!114 &1602694358
 MonoBehaviour:
@@ -8161,6 +8171,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
   var: 
   get: {fileID: 0}
   get2: {fileID: 0}
@@ -8271,6 +8282,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
 --- !u!114 &1743470397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8608,6 +8620,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
 --- !u!114 &1775254087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9256,6 +9269,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
   var: 
   get: {fileID: 0}
   get2: {fileID: 0}
@@ -9569,6 +9583,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
 --- !u!114 &1890322394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9871,6 +9886,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
   Field1: {fileID: 1454405407}
   Field2: {fileID: 1223834283}
   comparatorType: 0
