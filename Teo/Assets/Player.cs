@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
     float dashSpeed = 0;
     bool live = true;
     bool isSit = false;
+
     void Start()
     {
         control = GameObject.Find("GameLogic").GetComponent<GameLogic>();
@@ -47,7 +48,7 @@ public class Player : MonoBehaviour
     }
     public void Sit()
     {
-        if(!isSit)StartCoroutine(WaitStand());
+        if (!isSit) StartCoroutine(WaitStand());
         isSit = true;
     }
     IEnumerator WaitStand()
@@ -68,10 +69,7 @@ public class Player : MonoBehaviour
         AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo(0);
         IsGround = (rigidbody2d.velocity.y < -3);
         anim.SetBool("Grounded", !IsGround);
-        if (anim.GetBool("Jump"))
-        {
-            anim.SetBool("Jump", !IsGround);
-        }
+        anim.SetBool("Jump", false);
         if (state.IsName("Jump"))
         {
             aSource.clip = jumpSound;
