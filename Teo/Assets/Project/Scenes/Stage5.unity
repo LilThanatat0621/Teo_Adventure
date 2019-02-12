@@ -1441,6 +1441,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
   getx1: {fileID: 0}
 --- !u!1 &353419685
 GameObject:
@@ -1639,6 +1640,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
   var: 
   get: {fileID: 0}
   get2: {fileID: 0}
@@ -2792,6 +2794,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
   var: 
   get: {fileID: 0}
   get2: {fileID: 0}
@@ -2901,6 +2904,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
 --- !u!114 &521450285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3110,7 +3114,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 26981956}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.99999994
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3233,7 +3237,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 562854492}
   m_Direction: 2
   m_Value: 0.9999992
-  m_Size: 0.61
+  m_Size: 0.60999995
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4164,6 +4168,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
   var: 
   get: {fileID: 0}
   get2: {fileID: 0}
@@ -4388,6 +4393,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
   getx1: {fileID: 0}
 --- !u!114 &833659183
 MonoBehaviour:
@@ -4607,6 +4613,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
 --- !u!114 &871037749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4816,7 +4823,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 392809369}
   m_HandleRect: {fileID: 392809368}
   m_Direction: 0
-  m_Value: 0.4984466
+  m_Value: 0.4984391
   m_Size: 0.9776368
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5025,6 +5032,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
   Field1: {fileID: 462757431}
   Field2: {fileID: 1180107655}
   comparatorType: 0
@@ -5294,6 +5302,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
 --- !u!1 &1006776960
 GameObject:
   m_ObjectHideFlags: 0
@@ -5398,6 +5407,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
 --- !u!114 &1006776965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6975,6 +6985,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
 --- !u!1 &1448520740
 GameObject:
   m_ObjectHideFlags: 0
@@ -7573,6 +7584,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
 --- !u!1001 &1539094080
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8056,8 +8068,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1622406105}
   m_HandleRect: {fileID: 1622406104}
   m_Direction: 2
-  m_Value: 0.9999998
-  m_Size: 0.28377056
+  m_Value: 0.9999999
+  m_Size: 0.50069886
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8762,6 +8774,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
 --- !u!1 &1704402274
 GameObject:
   m_ObjectHideFlags: 0
@@ -8918,11 +8931,11 @@ MonoBehaviour:
   jumpSpeed: 9
   maxSpeed: 10
   jumpPower: 20
+  IsGround: 0
   jumpRate: 1
   nextJumpPress: 0
   fireRate: 0.3
-  GroundCheck1: {fileID: 0}
-  groundLayer:
+  groundLayers:
     serializedVersion: 2
     m_Bits: 0
   HitArea: {fileID: 448240145620287016, guid: 327010c6f9734407abc4d603150d6fdf, type: 3}
@@ -9715,6 +9728,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
   var: 
   get: {fileID: 0}
   get2: {fileID: 0}
@@ -10152,6 +10166,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
 --- !u!1001 &1922692265
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10589,7 +10604,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000021972286, y: 0}
+  m_AnchoredPosition: {x: 0.0000067355522, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &2067329329
@@ -10696,6 +10711,7 @@ MonoBehaviour:
   Previous: {fileID: 0}
   leaveClone: 1
   isStartBlock: 0
+  isForeverBlock: 0
 --- !u!114 &2067329334
 MonoBehaviour:
   m_ObjectHideFlags: 0
