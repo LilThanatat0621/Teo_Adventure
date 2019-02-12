@@ -47,8 +47,8 @@ public class Player : MonoBehaviour
     }
     public void Sit()
     {
+        if(!isSit)StartCoroutine(WaitStand());
         isSit = true;
-        StartCoroutine(WaitStand());
     }
     IEnumerator WaitStand()
     {
