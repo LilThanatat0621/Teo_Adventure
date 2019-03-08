@@ -60,18 +60,18 @@ public class Player : MonoBehaviour
         Vector3 NewSizeCollder = new Vector3(this.GetComponent<SpriteRenderer>().bounds.size.x / transform.localScale.x, this.GetComponent<SpriteRenderer>().bounds.size.y / transform.localScale.y, this.GetComponent<SpriteRenderer>().bounds.size.z / transform.localScale.z);
         A.size = NewSizeCollder;
         // B.size = NewSizeCollder;
-        // anim.SetBool ("Grounded", false);
+        anim.SetBool ("Grounded", false);
 
         anim.SetFloat("Speed", (float)nowSpeed);
         anim.SetBool("Dash", dash);
         anim.SetBool("Sit", isSit);
+        
         AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo(0);
         IsGround = (rigidbody2d.velocity.y < -3);
         anim.SetBool("Grounded", !IsGround);
-        if (anim.GetBool("Jump"))
-        {
-            anim.SetBool("Jump", !IsGround);
-        }
+
+            anim.SetBool("Jump", false);
+        
         if (state.IsName("Jump"))
         {
             aSource.clip = jumpSound;
@@ -108,6 +108,7 @@ public class Player : MonoBehaviour
         }
         if (state.IsName("Run"))
         {
+             IsGround = true;
             aSource.clip = runSound;
             if (!aSource.isPlaying)
             {
@@ -190,12 +191,10 @@ public class Player : MonoBehaviour
             nextJumpPress = Time.time + jumpRate;
             rigidbody2d.AddForce((Vector2.up * jumpPower) * jumpSpeed);
         }
+        
 
     }
-    public void Falling()
-    {
-
-    }
+    
     public void Dash()
     {
         // transform.Translate(Vector2.right * speed );
