@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
-
-public class Player : MonoBehaviour
-{
+using UnityEngine.SceneManagement;
+public class Player : MonoBehaviour {
     public AudioClip runSound, jumpSound, fireSound, dashSound, crawlSound, deathSound, spawnSound, warpSound;
     private AudioSource aSource;
     // AudioSource = source;
@@ -30,215 +29,180 @@ public class Player : MonoBehaviour
     float dashSpeed = 0;
     bool live = true;
     bool isSit = false;
-    void Start()
-    {
-        control = GameObject.Find("GameLogic").GetComponent<GameLogic>();
-        rigidbody2d = gameObject.GetComponent<Rigidbody2D>();
-        anim = gameObject.GetComponent<Animator>();
-        aSource = GetComponent<AudioSource>();
-        BoxCollider2D[] temp = gameObject.GetComponents<BoxCollider2D>();
+
+    void Start () {
+        control = GameObject.Find ("GameLogic").GetComponent<GameLogic> ();
+        rigidbody2d = gameObject.GetComponent<Rigidbody2D> ();
+        anim = gameObject.GetComponent<Animator> ();
+        aSource = GetComponent<AudioSource> ();
+        BoxCollider2D[] temp = gameObject.GetComponents<BoxCollider2D> ();
         A = temp[0];
         B = temp[1];
         aSource.clip = spawnSound;
-        if (!aSource.isPlaying)
-        {
-            aSource.Play();
+        if (!aSource.isPlaying) {
+            aSource.Play ();
         }
     }
-    public void Sit()
-    {
-        if(!isSit)StartCoroutine(WaitStand());
+    public void Sit () {
+        if (!isSit) StartCoroutine (WaitStand ());
         isSit = true;
     }
-    IEnumerator WaitStand()
-    {
-        yield return new WaitForSeconds(1);
+    IEnumerator WaitStand () {
+        yield return new WaitForSeconds (1);
         isSit = false;
     }
-    void Update()
-    {
-        Vector3 NewSizeCollder = new Vector3(this.GetComponent<SpriteRenderer>().bounds.size.x / transform.localScale.x, this.GetComponent<SpriteRenderer>().bounds.size.y / transform.localScale.y, this.GetComponent<SpriteRenderer>().bounds.size.z / transform.localScale.z);
+    void Update () {
+        Vector3 NewSizeCollder = new Vector3 (this.GetComponent<SpriteRenderer> ().bounds.size.x / transform.localScale.x, this.GetComponent<SpriteRenderer> ().bounds.size.y / transform.localScale.y, this.GetComponent<SpriteRenderer> ().bounds.size.z / transform.localScale.z);
         A.size = NewSizeCollder;
         // B.size = NewSizeCollder;
-        anim.SetBool ("Grounded", false);
+        // anim.SetBool ("Grounded", false);
+        if (Input.GetKey (KeyCode.Escape)) {
+            SceneManager.LoadScene ("Title");
+        }
 
-        anim.SetFloat("Speed", (float)nowSpeed);
-        anim.SetBool("Dash", dash);
-        anim.SetBool("Sit", isSit);
-        
-        AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo(0);
+        anim.SetFloat ("Speed", (float) nowSpeed);
+        anim.SetBool ("Dash", dash);
+        anim.SetBool ("Sit", isSit);
+        AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo (0);
         IsGround = (rigidbody2d.velocity.y < -3);
-        anim.SetBool("Grounded", !IsGround);
-
-            anim.SetBool("Jump", false);
-        
-        if (state.IsName("Jump"))
-        {
+        anim.SetBool ("Grounded", !IsGround);
+        anim.SetBool ("Jump", false);
+        if (state.IsName ("Jump")) {
             aSource.clip = jumpSound;
-            if (!aSource.isPlaying)
-            {
-                aSource.Play();
+            if (!aSource.isPlaying) {
+                aSource.Play ();
             }
         }
-        if (state.IsName("Attack"))
-        {
+        if (state.IsName ("Attack")) {
             aSource.clip = fireSound;
-            if (!aSource.isPlaying)
-            {
-                aSource.Play();
+            if (!aSource.isPlaying) {
+                aSource.Play ();
             }
         }
-        if (state.IsName("Dash"))
-        {
+        if (state.IsName ("Dash")) {
             aSource.clip = dashSound;
-            if (!aSource.isPlaying)
-            {
-                aSource.Play();
+            if (!aSource.isPlaying) {
+                aSource.Play ();
             }
         }
-        if (state.IsName("Death"))
-        {
+        if (state.IsName ("Death")) {
             aSource.clip = deathSound;
-            if (!aSource.isPlaying && live)
-            {
-                aSource.Play();
+            if (!aSource.isPlaying && live) {
+                aSource.Play ();
                 live = false;
                 control.isGameOver = true;
             }
         }
-        if (state.IsName("Run"))
-        {
-             IsGround = true;
+        if (state.IsName ("Run")) {
             aSource.clip = runSound;
-            if (!aSource.isPlaying)
-            {
-                aSource.Play();
+            if (!aSource.isPlaying) {
+                aSource.Play ();
             }
         }
         // anim.SetBool ("Attack", false);
 
         // anim.SetFloat ("Speed", Mathf.Abs (Input.GetAxis ("Horizontal")));
-        if (Input.GetAxis("Horizontal") < -0.1f)
-        {
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
-            anim.SetFloat("Speed", (float)1);
-            transform.eulerAngles = new Vector2(0, 180);
+        if (Input.GetAxis ("Horizontal") < -0.1f) {
+            transform.Translate (Vector2.right * speed * Time.deltaTime);
+            anim.SetFloat ("Speed", (float) 1);
+            transform.eulerAngles = new Vector2 (0, 180);
+
+        } else if (Input.GetAxis ("Horizontal") > 0.1f) {
+            transform.Translate (Vector2.right * speed * Time.deltaTime);
+            anim.SetFloat ("Speed", (float) 1);
+            transform.eulerAngles = new Vector2 (0, 0);
 
         }
-        else if (Input.GetAxis("Horizontal") > 0.1f)
-        {
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
-            anim.SetFloat("Speed", (float)1);
-            transform.eulerAngles = new Vector2(0, 0);
-
-        }
-        if (nowSpeed >= 1)
-        {
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
-            transform.eulerAngles = new Vector2(0, 0);
+        if (nowSpeed >= 1) {
+            transform.Translate (Vector2.right * speed * Time.deltaTime);
+            transform.eulerAngles = new Vector2 (0, 0);
         }
 
-        if (walking && nowSpeed <= 1)
-        {
+        if (walking && nowSpeed <= 1) {
 
             nowSpeed += 0.2;
         }
-        if (Input.GetButtonDown("Jump"))
-        {
-            Jump();
+        if (Input.GetButtonDown ("Jump")) {
+            Jump ();
         }
 
-        if (Input.GetKey(KeyCode.P))
-        {
-            Firez();
+        if (Input.GetKey (KeyCode.P)) {
+            Firez ();
         }
 
-        if (Input.GetKey(KeyCode.K))
-        {
+        if (Input.GetKey (KeyCode.K)) {
 
-            Dash();
-
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-
-            Sit();
+            Dash ();
 
         }
-        if (dash && dashSpeed <= 7)
-        {
+        if (Input.GetKey (KeyCode.S)) {
+
+            Sit ();
+
+        }
+        if (dash && dashSpeed <= 7) {
             dashSpeed += 0.5f;
         }
-        if (dash && dashSpeed >= 7)
-        {
+        if (dash && dashSpeed >= 7) {
             dashSpeed = 0;
             dash = false;
 
         }
         // if(!anim.GetBool ("ToDash"))
-        transform.Translate(Vector2.right * dashSpeed * Time.deltaTime);
+        transform.Translate (Vector2.right * dashSpeed * Time.deltaTime);
         if (nowSpeed >= 0 && !walking) nowSpeed -= 0.1;
         // anim.SetFloat ("Speed", Mathf.Abs (Input.GetAxis ("Horizontal")));
 
         walking = false;
-        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        transform.position = new Vector3 (transform.position.x, transform.position.y, 0);
     }
-    public void Jump()
-    {
-        if (Time.time > nextJumpPress)
-        {
-            anim.SetBool("Jump", true);
+    public void Jump () {
+        if (Time.time > nextJumpPress) {
+            anim.SetBool ("Jump", true);
             nextJumpPress = Time.time + jumpRate;
-            rigidbody2d.AddForce((Vector2.up * jumpPower) * jumpSpeed);
+            rigidbody2d.AddForce ((Vector2.up * jumpPower) * jumpSpeed);
         }
         
 
     }
-    
-    public void Dash()
-    {
+    public void Falling () {
+
+    }
+    public void Dash () {
         // transform.Translate(Vector2.right * speed );
-        anim.SetBool("ToDash", true);
+        anim.SetBool ("ToDash", true);
     }
-    public void ToDash()
-    {
+    public void ToDash () {
         dash = true;
-        anim.SetBool("ToDash", false);
+        anim.SetBool ("ToDash", false);
     }
-    public void Firez()
-    {
-        if (Time.time > nextFire)
-        {
+    public void Firez () {
+        if (Time.time > nextFire) {
             nextFire = Time.time + fireRate;
             // Debug.Log ("Fire");
-            anim.SetBool("Attack", true);
+            anim.SetBool ("Attack", true);
         }
     }
-    public void Fire(float Degree)
-    {
+    public void Fire (float Degree) {
 
-        Instantiate(HitArea, new Vector3(transform.position.x + 10, transform.position.y + 10, transform.position.z), Quaternion.Euler(0, 0, Degree));
-        anim.SetBool("Attack", false);
+        Instantiate (HitArea, new Vector3 (transform.position.x + 10, transform.position.y + 10, transform.position.z), Quaternion.Euler (0, 0, Degree));
+        anim.SetBool ("Attack", false);
     }
-    public void Walk()
-    {
+    public void Walk () {
 
         walking = true;
     }
 
-    public void Fires()
-    {
-        if (anim.GetBool("Attack"))
-        {
-            if (transform.rotation.y == 0) Instantiate(HitArea, new Vector3(transform.position.x + 0.5f, transform.position.y + 0.5f, transform.position.z), transform.rotation);
-            else Instantiate(HitArea, new Vector3(transform.position.x - 0.5f, transform.position.y + 0.5f, transform.position.z), transform.rotation);
+    public void Fires () {
+        if (anim.GetBool ("Attack")) {
+            if (transform.rotation.y == 0) Instantiate (HitArea, new Vector3 (transform.position.x + 0.5f, transform.position.y + 0.5f, transform.position.z), transform.rotation);
+            else Instantiate (HitArea, new Vector3 (transform.position.x - 0.5f, transform.position.y + 0.5f, transform.position.z), transform.rotation);
         }
-        anim.SetBool("Attack", false);
+        anim.SetBool ("Attack", false);
     }
-    public void Die()
-    {
+    public void Die () {
 
-        anim.SetTrigger("Death");
+        anim.SetTrigger ("Death");
 
         // RectTransform rectTransform = GetComponent<RectTransform> ();
         // rectTransform.Rotate (new Vector3 (0, 0, 90));
@@ -246,33 +210,26 @@ public class Player : MonoBehaviour
         // StartCoroutine (WaitDeath ());
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
+    void OnTriggerEnter2D (Collider2D other) {
         // if (other.gameObject.name == "Redar"){
         // 	anim.SetBool("Grounded",true);
-        if (other.gameObject.name == "coin(Clone)")
-        {
+        if (other.gameObject.name == "coin(Clone)") {
             //+Health,score
-            Debug.Log("coin");
-            control.GetItems();
-            Destroy(other.gameObject);
-        }
-        else if (other.gameObject.name == "Enemy(Clone)")
-        {
+            Debug.Log ("coin");
+            control.GetItems ();
+            Destroy (other.gameObject);
+        } else if (other.gameObject.name == "Enemy(Clone)") {
             //-Health
-            control.CrashFire();
+            control.CrashFire ();
 
             healthBar -= 20;
 
-            if (healthBar <= 0)
-            {
+            if (healthBar <= 0) {
                 healthBar = 0;
-                StartCoroutine(WaitDeath());
+                StartCoroutine (WaitDeath ());
             }
-        }
-        else if (other.gameObject.name == "danger" || other.tag == "Danger")
-        {
-            Die();
+        } else if (other.gameObject.name == "danger" || other.tag == "Danger") {
+            Die ();
             // StartCoroutine (WaitDeath ());
         }
 
@@ -286,18 +243,16 @@ public class Player : MonoBehaviour
 
     // }
 
-    IEnumerator WaitDeath()
-    {
-        anim.SetTrigger("Death");
-        yield return new WaitForSeconds(2);
+    IEnumerator WaitDeath () {
+        anim.SetTrigger ("Death");
+        yield return new WaitForSeconds (2);
         // RectTransform rectTransform = GetComponent<RectTransform> ();
         // rectTransform.Rotate (new Vector3 (0, 0, 90));
         control.isGameOver = true;
     }
-    void OnGUI()
-    {
+    void OnGUI () {
         GUI.backgroundColor = Color.red;
-        GUI.Button(new Rect(Screen.width - (Screen.width - 65),
+        GUI.Button (new Rect (Screen.width - (Screen.width - 65),
                 12, (healthBar / 2),
                 20),
             "");

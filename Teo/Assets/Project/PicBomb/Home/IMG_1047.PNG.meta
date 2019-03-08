@@ -1,10 +1,7 @@
 fileFormatVersion: 2
-guid: e817f83516e263448987bebed91c5b79
+guid: 789244d38af544d429870d0c00da4223
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: water_0
-    21300002: water_1
-    21300004: water_2
+  fileIDToRecycleName: {}
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -43,7 +40,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -72,84 +69,13 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: water_0
-      rect:
-        serializedVersion: 2
-        x: 979
-        y: 303
-        width: 1019
-        height: 2177
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d55eda1fe08af49aebd25cccab685617
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: water_1
-      rect:
-        serializedVersion: 2
-        x: 1959
-        y: 260
-        width: 27
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9bfed37d1bfc448a9b0ca93ce5e21589
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: water_2
-      rect:
-        serializedVersion: 2
-        x: 972
-        y: 0
-        width: 1026
-        height: 219
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0768785fff8954cf99e1fdc4726ba4cf
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 0f64e1bc4252c2a438195ef2d19f360d
+    spriteID: 25473eca871694c43909b4ac30a1fb52
     vertices: []
     indices: 
     edges: []

@@ -40,7 +40,7 @@ public class GameLogic : MonoBehaviour {
 		if (!isGameOver) {
 			GUI.Label (new Rect (10, 50, Screen.width / 5,
 					Screen.height / 6),
-				"เวลา: " + ((int) timeRemaining).ToString ());
+				"TIME " + ((int) timeRemaining).ToString ());
 			GUI.Label (new Rect (Screen.width - (Screen.width / 6), 10,
 					Screen.width / 6, Screen.height / 6),
 				"คะแนน: " + ((int) score).ToString ());
