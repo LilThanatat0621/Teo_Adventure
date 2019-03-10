@@ -9,7 +9,7 @@ public class GameLogic : MonoBehaviour {
 	float score = 0f;
 	public GUISkin scoreText;
 	public bool isGameOver = false;
-
+	public bool trigger  =false;
 	void Start () {
 		Time.timeScale = 1;
 	}
@@ -37,14 +37,38 @@ public class GameLogic : MonoBehaviour {
 
 	void OnGUI () {
 		GUI.skin = scoreText;
+
+		 if(trigger)
+		{
+		Time.timeScale = 0;
+
+			//Show Total Score
+			GUI.Box (new Rect (Screen.width / 4,
+					Screen.height / 4,
+					Screen.width / 2,
+					Screen.height / 2),
+				"VICTORY " + (int) score);
+
+			//Restart Game
+			 {
+				Forever[] allChildren = GameObject.FindWithTag ("CodeContent").transform.GetComponentsInChildren<Forever> ();
+				foreach (Forever child in allChildren) {
+					if (child.isForeverBlock) child.Stop ();
+				}
+				Application.LoadLevel (Application.loadedLevel);
+			}
+
+		
+		} 
 		if (!isGameOver) {
-			GUI.Label (new Rect (10, 50, Screen.width / 5,
-					Screen.height / 6),
-				"TIME " + ((int) timeRemaining).ToString ());
-			GUI.Label (new Rect (Screen.width - (Screen.width / 6), 10,
-					Screen.width / 6, Screen.height / 6),
-				"คะแนน: " + ((int) score).ToString ());
-		} else {
+			// GUI.Label (new Rect (10, 50, Screen.width / 5,
+			// 		Screen.height / 6),
+			// 	"TIME " + ((int) timeRemaining).ToString ());
+			// GUI.Label (new Rect (Screen.width - (Screen.width / 6), 10,
+			// 		Screen.width / 6, Screen.height / 6),
+			// 	"คะแนน: " + ((int) score).ToString ());
+		} 
+		else {
 			Time.timeScale = 0;
 
 			//Show Total Score

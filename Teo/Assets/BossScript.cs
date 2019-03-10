@@ -12,6 +12,7 @@ public class BossScript : MonoBehaviour {
     private Rigidbody2D rigidbody2d;
     public int live = 5;
     bool isDie = false;
+    GameLogic trigged;
     void Start () {
         fireRate = 10;
         rigidbody2d = gameObject.GetComponent<Rigidbody2D> ();
@@ -55,7 +56,9 @@ public class BossScript : MonoBehaviour {
     }
     void OnTriggerExit2D (Collider2D other) {
         if (other.gameObject.name == "danger") {
-            Destroy (this.gameObject);
+            trigged = GameObject.Find ("GameLogic").GetComponent<GameLogic> ();
+            trigged.trigger = true;
+            
         }
     }
 
