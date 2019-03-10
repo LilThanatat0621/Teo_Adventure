@@ -15,6 +15,7 @@ TagManager:
   - DangerBullet
   - Forever
   - Ground
+  - win
   layers:
   - Default
   - TransparentFX

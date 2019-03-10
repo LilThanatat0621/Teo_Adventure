@@ -1,17 +1,21 @@
 ﻿using System.Collections;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class GameLogic : MonoBehaviour {
+	// Text m_text;
+	// public Font m_text;	
 	float timeRemaining = 4500f;
 	float timeExtension = 3f;
 	float timeDeduction = 2f;
 	float totalTimeElapsed = 0;
+	public Texture aTexture;
 	float score = 0f;
 	public GUISkin scoreText;
 	public bool isGameOver = false;
 	public bool trigger  =false;
 	void Start () {
 		Time.timeScale = 1;
+		// m_text = GetComponent<Text>();
 	}
 
 	void Update () {
@@ -40,48 +44,44 @@ public class GameLogic : MonoBehaviour {
 
 		 if(trigger)
 		{
+			
 		Time.timeScale = 0;
-
-			//Show Total Score
-			GUI.Box (new Rect (Screen.width / 4,
-					Screen.height / 4,
-					Screen.width / 2,
-					Screen.height / 2),
-				"VICTORY " + (int) score);
-
-			//Restart Game
-			 {
+			if (GUI.Button (new Rect (Screen.width / 4 ,
+						Screen.height / 4 + Screen.height / 10 + 10,
+						Screen.width / 2  , Screen.height / 10),
+					"MAIN MENU")) {
 				Forever[] allChildren = GameObject.FindWithTag ("CodeContent").transform.GetComponentsInChildren<Forever> ();
 				foreach (Forever child in allChildren) {
 					if (child.isForeverBlock) child.Stop ();
 				}
-				Application.LoadLevel (Application.loadedLevel);
+				SceneManager.LoadScene ("Title");
 			}
-
 		
+			if (!aTexture)
+        {
+            Debug.LogError("Assign a Texture in the inspector.");
+            return;
+        }
+
+        GUI.DrawTexture(new Rect(Screen.width / 15 -70,
+						Screen.height / 6,
+						Screen.width , Screen.height / 2-250), aTexture, ScaleMode.ScaleToFit, true, 10.0F);
 		} 
-		if (!isGameOver) {
-			// GUI.Label (new Rect (10, 50, Screen.width / 5,
-			// 		Screen.height / 6),
-			// 	"TIME " + ((int) timeRemaining).ToString ());
-			// GUI.Label (new Rect (Screen.width - (Screen.width / 6), 10,
-			// 		Screen.width / 6, Screen.height / 6),
-			// 	"คะแนน: " + ((int) score).ToString ());
-		} 
-		else {
+		
+		if(isGameOver) {
 			Time.timeScale = 0;
 
 			//Show Total Score
 			GUI.Box (new Rect (Screen.width / 4,
 					Screen.height / 4,
-					Screen.width / 2,
+					Screen.width / 2 ,
 					Screen.height / 2),
-				"GAME OVER\nYOUR SCORE: " + (int) score);
+				"GAME OVER\n" );
 
 			//Restart Game
 			if (GUI.Button (new Rect (Screen.width / 4 + 10,
 						Screen.height / 4 + Screen.height / 10 + 10,
-						Screen.width / 2 - 20, Screen.height / 10),
+						Screen.width / 2 + 20, Screen.height / 10),
 					"RESTART")) {
 				Forever[] allChildren = GameObject.FindWithTag ("CodeContent").transform.GetComponentsInChildren<Forever> ();
 				foreach (Forever child in allChildren) {
