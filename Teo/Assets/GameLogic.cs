@@ -44,16 +44,16 @@ public class GameLogic : MonoBehaviour {
 
 		 if(trigger)
 		{
-			
+			Forever[] allChildren = GameObject.FindWithTag ("CodeContent").transform.GetComponentsInChildren<Forever> ();
+				foreach (Forever child in allChildren) {
+					if (child.isForeverBlock) child.Stop ();
+				}
 		Time.timeScale = 0;
 			if (GUI.Button (new Rect (Screen.width / 4 ,
 						Screen.height / 4 + Screen.height / 10 + 10,
 						Screen.width / 2  , Screen.height / 10),
 					"MAIN MENU")) {
-				Forever[] allChildren = GameObject.FindWithTag ("CodeContent").transform.GetComponentsInChildren<Forever> ();
-				foreach (Forever child in allChildren) {
-					if (child.isForeverBlock) child.Stop ();
-				}
+				
 				SceneManager.LoadScene ("Title");
 			}
 		
@@ -81,7 +81,7 @@ public class GameLogic : MonoBehaviour {
 			//Restart Game
 			if (GUI.Button (new Rect (Screen.width / 4 + 10,
 						Screen.height / 4 + Screen.height / 10 + 10,
-						Screen.width / 2 + 20, Screen.height / 10),
+						Screen.width / 2 - 20, Screen.height / 10),
 					"RESTART")) {
 				Forever[] allChildren = GameObject.FindWithTag ("CodeContent").transform.GetComponentsInChildren<Forever> ();
 				foreach (Forever child in allChildren) {
